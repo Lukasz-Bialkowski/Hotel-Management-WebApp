@@ -274,19 +274,43 @@ angular.module("account/login.tpl.html", []).run(["$templateCache", function($te
   $templateCache.put("account/login.tpl.html",
     "<div class=\"row\">\n" +
     "  <h1 class=\"page-header\">\n" +
-    "      Login\n" +
+    "      Logowanie\n" +
     "  </h1>\n" +
-    "  <form ng-submit=\"login()\">\n" +
-    "      <div class=\"form-group\">\n" +
-    "          <label>Username:</label>\n" +
-    "          <input type=\"text\" ng-model=\"account.name\" class=\"form-control\"/>\n" +
-    "      </div>\n" +
-    "      <div class=\"form-group\">\n" +
-    "          <label>Password:</label>\n" +
-    "          <input type=\"password\" ng-model=\"account.password\" class=\"form-control\"/>\n" +
-    "      </div>\n" +
-    "      <button class=\"btn btn-success\" type=\"submit\">Login</button>\n" +
-    "  </form>\n" +
+    "    <form name=\"itemForm\" novalidate ng-submit=\"login()\">\n" +
+    "        <fieldset>\n" +
+    "            <div class=\"row\">\n" +
+    "                <div class=\"col-md-6\">\n" +
+    "                    <div class=\"form-group\">\n" +
+    "                        <label for=\"loginId\" class=\"control-label\">Login (wymagane)</label>\n" +
+    "                        <input class=\"form-control\" placeholder=\"Wpisz login\" id=\"loginId\" ng-model=\"current.login\" required hrt-btr-validation>\n" +
+    "                    </div>\n" +
+    "                </div>\n" +
+    "            </div>\n" +
+    "            <div class=\"row\">\n" +
+    "                <div class=\"col-md-6\">\n" +
+    "                    <div class=\"form-group\">\n" +
+    "                        <label for=\"passwordId\" class=\"control-label\">Haslo</label>\n" +
+    "                        <input class=\"form-control\" placeholder=\"Wpisz haslo\" type=\"password\" id=\"passwordId\" ng-model=\"current.password\" required hrt-btr-validation>\n" +
+    "                    </div>\n" +
+    "                </div>\n" +
+    "            </div>\n" +
+    "        </fieldset>\n" +
+    "        <div class=\"row\">\n" +
+    "            <button class=\"btn btn-success center-block\" type=\"submit\">Zaloguj</button>\n" +
+    "        </div>\n" +
+    "    </form>\n" +
+    "\n" +
+    "  <!--<form ng-submit=\"login()\">-->\n" +
+    "      <!--<div class=\"form-group\">-->\n" +
+    "          <!--<label>Username:</label>-->\n" +
+    "          <!--<input type=\"text\" ng-model=\"account.name\" class=\"form-control\"/>-->\n" +
+    "      <!--</div>-->\n" +
+    "      <!--<div class=\"form-group\">-->\n" +
+    "          <!--<label>Password:</label>-->\n" +
+    "          <!--<input type=\"password\" ng-model=\"account.password\" class=\"form-control\"/>-->\n" +
+    "      <!--</div>-->\n" +
+    "      <!--<button class=\"btn btn-success\" type=\"submit\">Login</button>-->\n" +
+    "  <!--</form>-->\n" +
     "</div>\n" +
     "\n" +
     "");
@@ -296,19 +320,117 @@ angular.module("account/register.tpl.html", []).run(["$templateCache", function(
   $templateCache.put("account/register.tpl.html",
     "<div class=\"row\">\n" +
     "  <h1 class=\"page-header\">\n" +
-    "      Register\n" +
+    "      Rejestracja\n" +
     "  </h1>\n" +
-    "  <form ng-submit=\"register()\">\n" +
-    "      <div class=\"form-group\">\n" +
-    "          <label>Username:</label>\n" +
-    "          <input type=\"text\" ng-model=\"account.name\" class=\"form-control\" />\n" +
-    "      </div>\n" +
-    "      <div class=\"form-group\">\n" +
-    "          <label>Password:</label>\n" +
-    "          <input type=\"password\" ng-model=\"account.password\" class=\"form-control\" />\n" +
-    "      </div>\n" +
-    "      <button class=\"btn btn-success\" type=\"submit\">Register</button>\n" +
-    "  </form>\n" +
+    "\n" +
+    "    <form name=\"itemForm\" novalidate ng-submit=\"register()\">\n" +
+    "        <fieldset>\n" +
+    "            <div class=\"row\">\n" +
+    "                <div class=\"col-md-12\">\n" +
+    "                    <div class=\"form-group\">\n" +
+    "                        <label for=\"loginId\" class=\"control-label\">Login (wymagane)</label>\n" +
+    "                        <input class=\"form-control\" placeholder=\"login\" id=\"loginId\" ng-model=\"current.login\" required\n" +
+    "                               hrt-btr-validation>\n" +
+    "                    </div>\n" +
+    "                </div>\n" +
+    "            </div>\n" +
+    "            <div class=\"row\">\n" +
+    "                <div class=\"col-md-6\">\n" +
+    "                    <div class=\"form-group\">\n" +
+    "                        <label for=\"mailId\" class=\"control-label\">Adres email (wymagane)</label>\n" +
+    "                        <input name=\"email\" class=\"form-control\" placeholder=\"np. jankowalski@o2.pl\" id=\"mailId\"\n" +
+    "                               ng-model=\"current.email\" required\n" +
+    "                               ng-pattern=\"/^[^\\s@]+@[^\\s@]+\\.[^\\s@]{2,}$/\" hrt-btr-validation>\n" +
+    "\n" +
+    "                        <div ng-messages=\"itemForm.email.$error\" ng-show=\"!itemForm.email.$pristine\"\n" +
+    "                             ng-messages-include=\"error-messages\">\n" +
+    "                            <div ng-message=\"pattern\">Wprowadz poprawny adres email!</div>\n" +
+    "                        </div>\n" +
+    "                    </div>\n" +
+    "                </div>\n" +
+    "                <div class=\"col-md-6\">\n" +
+    "                    <div class=\"form-group\">\n" +
+    "                        <label for=\"passwordId\" class=\"control-label\">Haslo</label>\n" +
+    "                        <input class=\"form-control\" placeholder=\"Haslo\" type=\"password\" hrt-btr-validation\n" +
+    "                               id=\"passwordId\" ng-model=\"current.password\" required>\n" +
+    "                    </div>\n" +
+    "                </div>\n" +
+    "            </div>\n" +
+    "        </fieldset>\n" +
+    "        <fieldset>\n" +
+    "            <legend>Adres</legend>\n" +
+    "            <div class=\"row\">\n" +
+    "                <div class=\"col-md-6\">\n" +
+    "                    <div class=\"form-group\">\n" +
+    "                        <label for=\"countryId\" class=\"control-label\">Kraj (wymagane)</label>\n" +
+    "                        <select type=\"search\" class=\"form-control\" placeholder=\"np. Poland\" id=\"countryId\"\n" +
+    "                                ng-options=\"country.name  for country in countries track by country.code\"\n" +
+    "                                ng-model=\"current.address.country\" required hrt-btr-validation></select>\n" +
+    "                    </div>\n" +
+    "                </div>\n" +
+    "                <div class=\"col-md-6\">\n" +
+    "                    <div class=\"form-group\">\n" +
+    "                        <label for=\"cityId\" class=\"control-label\">Miasto (wymagane)</label>\n" +
+    "                        <input class=\"form-control\" id=\"cityId\" placeholder=\"Radom\" ng-model=\"current.address.city\"\n" +
+    "                               required hrt-btr-validation>\n" +
+    "                    </div>\n" +
+    "                </div>\n" +
+    "            </div>\n" +
+    "            <div class=\"row\">\n" +
+    "                <div class=\"col-md-6\">\n" +
+    "                    <div class=\"form-group\">\n" +
+    "                        <label for=\"streetId\" class=\"control-label\">Ulica (wymagane)</label>\n" +
+    "                        <input class=\"form-control\" id=\"streetId\" placeholder=\"Zakrzowska\"\n" +
+    "                               ng-model=\"current.address.street\" required hrt-btr-validation>\n" +
+    "                    </div>\n" +
+    "                </div>\n" +
+    "                <div class=\"col-md-6\">\n" +
+    "                    <div class=\"form-group\">\n" +
+    "                        <label for=\"postcodePLId\" class=\"control-label\">Kod pocztowy (wymagane)</label>\n" +
+    "                        <input name=\"zipcode\" class=\"form-control\" ng-pattern=\"zipCodePatternPL\" id=\"postcodePLId\"\n" +
+    "                               placeholder=\"np. 20-434\" ng-model=\"current.address.postcode\"\n" +
+    "                               required hrt-btr-validation>\n" +
+    "\n" +
+    "                        <div ng-messages=\"itemForm.zipcode.$error\" ng-show=\"!itemForm.zipcode.$pristine\"\n" +
+    "                             ng-messages-include=\"error-messages\">\n" +
+    "                            <div ng-message=\"pattern\">Wpisz poprawny kod pocztowy</div>\n" +
+    "                        </div>\n" +
+    "                    </div>\n" +
+    "                </div>\n" +
+    "                <div class=\"col-md-6\">\n" +
+    "                    <div class=\"form-group\">\n" +
+    "                        <label for=\"buildingId\" class=\"control-label\">Numer budynku (wymagane)</label>\n" +
+    "                        <input class=\"form-control\" placeholder=\"np. 32A\" id=\"buildingId\"\n" +
+    "                               ng-model=\"current.address.buildingNumber\" required hrt-btr-validation>\n" +
+    "                    </div>\n" +
+    "                </div>\n" +
+    "                <div class=\"col-md-6\">\n" +
+    "                    <div class=\"form-group\">\n" +
+    "                        <label for=\"localId\" class=\"control-label\">Numer lokalu</label>\n" +
+    "                        <input class=\"form-control\" placeholder=\"np. 13\" id=\"localId\"\n" +
+    "                               ng-model=\"current.address.apartmentNumber\">\n" +
+    "                    </div>\n" +
+    "                </div>\n" +
+    "            </div>\n" +
+    "        </fieldset>\n" +
+    "        <div class=\"row\">\n" +
+    "            <button class=\"btn btn-success center-block\" type=\"submit\">Zaloz konto</button>\n" +
+    "        </div>\n" +
+    "    </form>\n" +
+    "\n" +
+    "\n" +
+    "\n" +
+    "    <!--<form >-->\n" +
+    "      <!--<div class=\"form-group\">-->\n" +
+    "          <!--<label>Username:</label>-->\n" +
+    "          <!--<input type=\"text\" ng-model=\"account.name\" class=\"form-control\" />-->\n" +
+    "      <!--</div>-->\n" +
+    "      <!--<div class=\"form-group\">-->\n" +
+    "          <!--<label>Password:</label>-->\n" +
+    "          <!--<input type=\"password\" ng-model=\"account.password\" class=\"form-control\" />-->\n" +
+    "      <!--</div>-->\n" +
+    "      <!--<button class=\"btn btn-success\" >Register</button>-->\n" +
+    "  <!--</form>-->\n" +
     "</div>\n" +
     "\n" +
     "");

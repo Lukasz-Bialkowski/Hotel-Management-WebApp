@@ -53,6 +53,11 @@
             <artifactId>commons-dbcp2</artifactId>
             <version>2.0.1</version>
         </dependency>
+        <dependency>
+            <groupId>com.hrtools</groupId>
+            <artifactId>hrtools-crudfs</artifactId>
+            <version>1.2.4-SNAPSHOT</version>
+        </dependency>
 
         <!-- JSON Processing -->
         <dependency>

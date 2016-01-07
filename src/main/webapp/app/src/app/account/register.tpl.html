@@ -1,17 +1,115 @@
 <div class="row">
   <h1 class="page-header">
-      Register
+      Rejestracja
   </h1>
-  <form ng-submit="register()">
-      <div class="form-group">
-          <label>Username:</label>
-          <input type="text" ng-model="account.name" class="form-control" />
-      </div>
-      <div class="form-group">
-          <label>Password:</label>
-          <input type="password" ng-model="account.password" class="form-control" />
-      </div>
-      <button class="btn btn-success" type="submit">Register</button>
-  </form>
+
+    <form name="itemForm" novalidate ng-submit="register()">
+        <fieldset>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="loginId" class="control-label">Login (wymagane)</label>
+                        <input class="form-control" placeholder="login" id="loginId" ng-model="current.login" required
+                               hrt-btr-validation>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="mailId" class="control-label">Adres email (wymagane)</label>
+                        <input name="email" class="form-control" placeholder="np. jankowalski@o2.pl" id="mailId"
+                               ng-model="current.email" required
+                               ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/" hrt-btr-validation>
+
+                        <div ng-messages="itemForm.email.$error" ng-show="!itemForm.email.$pristine"
+                             ng-messages-include="error-messages">
+                            <div ng-message="pattern">Wprowadz poprawny adres email!</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="passwordId" class="control-label">Haslo</label>
+                        <input class="form-control" placeholder="Haslo" type="password" hrt-btr-validation
+                               id="passwordId" ng-model="current.password" required>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+        <fieldset>
+            <legend>Adres</legend>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="countryId" class="control-label">Kraj (wymagane)</label>
+                        <select type="search" class="form-control" placeholder="np. Poland" id="countryId"
+                                ng-options="country.name  for country in countries track by country.code"
+                                ng-model="current.address.country" required hrt-btr-validation></select>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="cityId" class="control-label">Miasto (wymagane)</label>
+                        <input class="form-control" id="cityId" placeholder="Radom" ng-model="current.address.city"
+                               required hrt-btr-validation>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="streetId" class="control-label">Ulica (wymagane)</label>
+                        <input class="form-control" id="streetId" placeholder="Zakrzowska"
+                               ng-model="current.address.street" required hrt-btr-validation>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="postcodePLId" class="control-label">Kod pocztowy (wymagane)</label>
+                        <input name="zipcode" class="form-control" ng-pattern="zipCodePatternPL" id="postcodePLId"
+                               placeholder="np. 20-434" ng-model="current.address.postcode"
+                               required hrt-btr-validation>
+
+                        <div ng-messages="itemForm.zipcode.$error" ng-show="!itemForm.zipcode.$pristine"
+                             ng-messages-include="error-messages">
+                            <div ng-message="pattern">Wpisz poprawny kod pocztowy</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="buildingId" class="control-label">Numer budynku (wymagane)</label>
+                        <input class="form-control" placeholder="np. 32A" id="buildingId"
+                               ng-model="current.address.buildingNumber" required hrt-btr-validation>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="localId" class="control-label">Numer lokalu</label>
+                        <input class="form-control" placeholder="np. 13" id="localId"
+                               ng-model="current.address.apartmentNumber">
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+        <div class="row">
+            <button class="btn btn-success center-block" type="submit">Zaloz konto</button>
+        </div>
+    </form>
+
+
+
+    <!--<form >-->
+      <!--<div class="form-group">-->
+          <!--<label>Username:</label>-->
+          <!--<input type="text" ng-model="account.name" class="form-control" />-->
+      <!--</div>-->
+      <!--<div class="form-group">-->
+          <!--<label>Password:</label>-->
+          <!--<input type="password" ng-model="account.password" class="form-control" />-->
+      <!--</div>-->
+      <!--<button class="btn btn-success" >Register</button>-->
+  <!--</form>-->
 </div>
 
