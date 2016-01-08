@@ -36,7 +36,7 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public Account createAccount(Account data) {
-        Account account = accountRepo.findAccountByName(data.getName());
+        Account account = accountRepo.findAccountByLogin(data.getLogin());
         if(account != null)
         {
             throw new AccountExistsException();
@@ -82,7 +82,7 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public Account findByAccountName(String name) {
-        return accountRepo.findAccountByName(name);
+    public Account findByAccountLogin(String login) {
+        return accountRepo.findAccountByLogin(login);
     }
 }

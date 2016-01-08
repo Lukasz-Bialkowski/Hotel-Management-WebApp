@@ -13,3 +13,9 @@ target/
 log/
 target/
 
+/app/cache/*
+/app/logs/*
+/app/bootstrap*
+/vendor/*
+/web/bundles/
+/app/config/parameters.yml

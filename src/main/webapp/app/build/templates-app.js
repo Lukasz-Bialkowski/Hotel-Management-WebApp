@@ -272,7 +272,7 @@ angular.module("about/about.tpl.html", []).run(["$templateCache", function($temp
 
 angular.module("account/login.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("account/login.tpl.html",
-    "<div class=\"row\">\n" +
+    "<div>\n" +
     "  <h1 class=\"page-header\">\n" +
     "      Logowanie\n" +
     "  </h1>\n" +
@@ -299,18 +299,6 @@ angular.module("account/login.tpl.html", []).run(["$templateCache", function($te
     "            <button class=\"btn btn-success center-block\" type=\"submit\">Zaloguj</button>\n" +
     "        </div>\n" +
     "    </form>\n" +
-    "\n" +
-    "  <!--<form ng-submit=\"login()\">-->\n" +
-    "      <!--<div class=\"form-group\">-->\n" +
-    "          <!--<label>Username:</label>-->\n" +
-    "          <!--<input type=\"text\" ng-model=\"account.name\" class=\"form-control\"/>-->\n" +
-    "      <!--</div>-->\n" +
-    "      <!--<div class=\"form-group\">-->\n" +
-    "          <!--<label>Password:</label>-->\n" +
-    "          <!--<input type=\"password\" ng-model=\"account.password\" class=\"form-control\"/>-->\n" +
-    "      <!--</div>-->\n" +
-    "      <!--<button class=\"btn btn-success\" type=\"submit\">Login</button>-->\n" +
-    "  <!--</form>-->\n" +
     "</div>\n" +
     "\n" +
     "");
@@ -318,7 +306,7 @@ angular.module("account/login.tpl.html", []).run(["$templateCache", function($te
 
 angular.module("account/register.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("account/register.tpl.html",
-    "<div class=\"row\">\n" +
+    "<div>\n" +
     "  <h1 class=\"page-header\">\n" +
     "      Rejestracja\n" +
     "  </h1>\n" +
@@ -326,16 +314,21 @@ angular.module("account/register.tpl.html", []).run(["$templateCache", function(
     "    <form name=\"itemForm\" novalidate ng-submit=\"register()\">\n" +
     "        <fieldset>\n" +
     "            <div class=\"row\">\n" +
-    "                <div class=\"col-md-12\">\n" +
+    "                <div class=\"col-md-4\">\n" +
     "                    <div class=\"form-group\">\n" +
     "                        <label for=\"loginId\" class=\"control-label\">Login (wymagane)</label>\n" +
     "                        <input class=\"form-control\" placeholder=\"login\" id=\"loginId\" ng-model=\"current.login\" required\n" +
     "                               hrt-btr-validation>\n" +
     "                    </div>\n" +
     "                </div>\n" +
-    "            </div>\n" +
-    "            <div class=\"row\">\n" +
-    "                <div class=\"col-md-6\">\n" +
+    "                <div class=\"col-md-4\">\n" +
+    "                    <div class=\"form-group\">\n" +
+    "                        <label for=\"passwordId\" class=\"control-label\">Haslo</label>\n" +
+    "                        <input class=\"form-control\" placeholder=\"Haslo\" type=\"password\" hrt-btr-validation\n" +
+    "                               id=\"passwordId\" ng-model=\"current.password\" required>\n" +
+    "                    </div>\n" +
+    "                </div>\n" +
+    "                <div class=\"col-md-4\">\n" +
     "                    <div class=\"form-group\">\n" +
     "                        <label for=\"mailId\" class=\"control-label\">Adres email (wymagane)</label>\n" +
     "                        <input name=\"email\" class=\"form-control\" placeholder=\"np. jankowalski@o2.pl\" id=\"mailId\"\n" +
@@ -348,11 +341,25 @@ angular.module("account/register.tpl.html", []).run(["$templateCache", function(
     "                        </div>\n" +
     "                    </div>\n" +
     "                </div>\n" +
-    "                <div class=\"col-md-6\">\n" +
+    "            </div>\n" +
+    "            <div class=\"row\">\n" +
+    "                <div class=\"col-md-4\">\n" +
     "                    <div class=\"form-group\">\n" +
-    "                        <label for=\"passwordId\" class=\"control-label\">Haslo</label>\n" +
-    "                        <input class=\"form-control\" placeholder=\"Haslo\" type=\"password\" hrt-btr-validation\n" +
-    "                               id=\"passwordId\" ng-model=\"current.password\" required>\n" +
+    "                        <label for=\"nameId\" class=\"control-label\">Imie (wymagane)</label>\n" +
+    "                        <input type=\"text\" class=\"form-control\" placeholder=\"np. Polska\" id=\"nameId\"\n" +
+    "                               ng-model=\"current.name\" required hrt-btr-validation>\n" +
+    "                    </div>\n" +
+    "                </div>\n" +
+    "                <div class=\"col-md-4\">\n" +
+    "                    <div class=\"form-group\">\n" +
+    "                        <label for=\"surnameId\" class=\"control-label\">Nazwisko (wymagane)</label>\n" +
+    "                        <input class=\"form-control\" id=\"surnameId\" placeholder=\"Radom\" ng-model=\"current.surname\"\n" +
+    "                               required hrt-btr-validation>\n" +
+    "                    </div>\n" +
+    "                </div>\n" +
+    "                <div class=\"col-md-4\">\n" +
+    "                    <div class=\"form-group\">\n" +
+    "                        <label class=\"control-label\">Data urodzenia (wymagane)</label>\n" +
     "                    </div>\n" +
     "                </div>\n" +
     "            </div>\n" +
@@ -363,9 +370,8 @@ angular.module("account/register.tpl.html", []).run(["$templateCache", function(
     "                <div class=\"col-md-6\">\n" +
     "                    <div class=\"form-group\">\n" +
     "                        <label for=\"countryId\" class=\"control-label\">Kraj (wymagane)</label>\n" +
-    "                        <select type=\"search\" class=\"form-control\" placeholder=\"np. Poland\" id=\"countryId\"\n" +
-    "                                ng-options=\"country.name  for country in countries track by country.code\"\n" +
-    "                                ng-model=\"current.address.country\" required hrt-btr-validation></select>\n" +
+    "                        <input type=\"text\" class=\"form-control\" placeholder=\"np. Polska\" id=\"countryId\"\n" +
+    "                                ng-model=\"current.address.country\" required hrt-btr-validation>\n" +
     "                    </div>\n" +
     "                </div>\n" +
     "                <div class=\"col-md-6\">\n" +
@@ -417,20 +423,6 @@ angular.module("account/register.tpl.html", []).run(["$templateCache", function(
     "            <button class=\"btn btn-success center-block\" type=\"submit\">Zaloz konto</button>\n" +
     "        </div>\n" +
     "    </form>\n" +
-    "\n" +
-    "\n" +
-    "\n" +
-    "    <!--<form >-->\n" +
-    "      <!--<div class=\"form-group\">-->\n" +
-    "          <!--<label>Username:</label>-->\n" +
-    "          <!--<input type=\"text\" ng-model=\"account.name\" class=\"form-control\" />-->\n" +
-    "      <!--</div>-->\n" +
-    "      <!--<div class=\"form-group\">-->\n" +
-    "          <!--<label>Password:</label>-->\n" +
-    "          <!--<input type=\"password\" ng-model=\"account.password\" class=\"form-control\" />-->\n" +
-    "      <!--</div>-->\n" +
-    "      <!--<button class=\"btn btn-success\" >Register</button>-->\n" +
-    "  <!--</form>-->\n" +
     "</div>\n" +
     "\n" +
     "");

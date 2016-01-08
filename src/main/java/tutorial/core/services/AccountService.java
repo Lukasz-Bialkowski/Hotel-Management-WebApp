@@ -16,5 +16,5 @@ public interface AccountService {
     public Blog createBlog(Long accountId, Blog data);
     public BlogList findBlogsByAccount(Long accountId);
     public AccountList findAllAccounts();
-    public Account findByAccountName(String name);
+    public Account findByAccountLogin(String login);
 }

@@ -31,7 +31,7 @@ public class AccountRepoTest {
     public void setup()
     {
         account = new Account();
-        account.setName("name");
+        account.setLogin("login");
         account.setPassword("password");
         repo.createAccount(account);
     }
@@ -42,7 +42,7 @@ public class AccountRepoTest {
     {
         Account account = repo.findAccount(this.account.getId());
         assertNotNull(account);
-        assertEquals(account.getName(), "name");
+        assertEquals(account.getLogin(), "login");
         assertEquals(account.getPassword(), "password");
     }
 }

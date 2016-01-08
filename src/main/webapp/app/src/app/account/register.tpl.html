@@ -1,4 +1,4 @@
-<div class="row">
+<div>
   <h1 class="page-header">
       Rejestracja
   </h1>
@@ -6,16 +6,21 @@
     <form name="itemForm" novalidate ng-submit="register()">
         <fieldset>
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-4">
                     <div class="form-group">
                         <label for="loginId" class="control-label">Login (wymagane)</label>
                         <input class="form-control" placeholder="login" id="loginId" ng-model="current.login" required
                                hrt-btr-validation>
                     </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="passwordId" class="control-label">Haslo</label>
+                        <input class="form-control" placeholder="Haslo" type="password" hrt-btr-validation
+                               id="passwordId" ng-model="current.password" required>
+                    </div>
+                </div>
+                <div class="col-md-4">
                     <div class="form-group">
                         <label for="mailId" class="control-label">Adres email (wymagane)</label>
                         <input name="email" class="form-control" placeholder="np. jankowalski@o2.pl" id="mailId"
@@ -28,11 +33,25 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6">
+            </div>
+            <div class="row">
+                <div class="col-md-4">
                     <div class="form-group">
-                        <label for="passwordId" class="control-label">Haslo</label>
-                        <input class="form-control" placeholder="Haslo" type="password" hrt-btr-validation
-                               id="passwordId" ng-model="current.password" required>
+                        <label for="nameId" class="control-label">Imie (wymagane)</label>
+                        <input type="text" class="form-control" placeholder="np. Polska" id="nameId"
+                               ng-model="current.name" required hrt-btr-validation>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="surnameId" class="control-label">Nazwisko (wymagane)</label>
+                        <input class="form-control" id="surnameId" placeholder="Radom" ng-model="current.surname"
+                               required hrt-btr-validation>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="control-label">Data urodzenia (wymagane)</label>
                     </div>
                 </div>
             </div>
@@ -43,9 +62,8 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="countryId" class="control-label">Kraj (wymagane)</label>
-                        <select type="search" class="form-control" placeholder="np. Poland" id="countryId"
-                                ng-options="country.name  for country in countries track by country.code"
-                                ng-model="current.address.country" required hrt-btr-validation></select>
+                        <input type="text" class="form-control" placeholder="np. Polska" id="countryId"
+                                ng-model="current.address.country" required hrt-btr-validation>
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -97,19 +115,5 @@
             <button class="btn btn-success center-block" type="submit">Zaloz konto</button>
         </div>
     </form>
-
-
-
-    <!--<form >-->
-      <!--<div class="form-group">-->
-          <!--<label>Username:</label>-->
-          <!--<input type="text" ng-model="account.name" class="form-control" />-->
-      <!--</div>-->
-      <!--<div class="form-group">-->
-          <!--<label>Password:</label>-->
-          <!--<input type="password" ng-model="account.password" class="form-control" />-->
-      <!--</div>-->
-      <!--<button class="btn btn-success" >Register</button>-->
-  <!--</form>-->
 </div>
 

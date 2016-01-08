@@ -41,12 +41,12 @@ public class AccountController {
     private AccountService accountService;
 
     @RequestMapping(method = RequestMethod.GET)
-    public ResponseEntity<AccountListResource> findAllAccounts(@RequestParam(value = "name", required = false) String name) {
+    public ResponseEntity<AccountListResource> findAllAccounts(@RequestParam(value = "login", required = false) String login) {
         AccountList list = null;
-        if (name == null) {
+        if (login == null) {
             list = accountService.findAllAccounts();
         } else {
-            Account account = accountService.findByAccountName(name);
+            Account account = accountService.findByAccountLogin(login);
             if (account == null) {
                 list = new AccountList(new ArrayList<Account>());
             } else {
@@ -58,9 +58,7 @@ public class AccountController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<AccountResource> createAccount(
-            @RequestBody AccountResource sentAccount
-    ) {
+    public ResponseEntity<AccountResource> createAccount(@RequestBody AccountResource sentAccount) {
         try {
             Account createdAccount = accountService.createAccount(sentAccount.toAccount());
             AccountResource res = new AccountResourceAsm().toResource(createdAccount);
@@ -74,9 +72,7 @@ public class AccountController {
 
     @RequestMapping(value = "/{accountId}",
             method = RequestMethod.GET)
-    public ResponseEntity<AccountResource> getAccount(
-            @PathVariable Long accountId
-    ) {
+    public ResponseEntity<AccountResource> getAccount(@PathVariable Long accountId) {
         Account account = accountService.findAccount(accountId);
         if (account != null) {
             AccountResource res = new AccountResourceAsm().toResource(account);
@@ -86,11 +82,8 @@ public class AccountController {
         }
     }
 
-    @RequestMapping(value = "/{accountId}/blogs",
-            method = RequestMethod.POST)
-    public ResponseEntity<BlogResource> createBlog(
-            @PathVariable Long accountId,
-            @RequestBody BlogResource res) {
+    @RequestMapping(value = "/{accountId}/blogs",method = RequestMethod.POST)
+    public ResponseEntity<BlogResource> createBlog(@PathVariable Long accountId, @RequestBody BlogResource res) {
         try {
             Blog createdBlog = accountService.createBlog(accountId, res.toBlog());
             BlogResource createdBlogRes = new BlogResourceAsm().toResource(createdBlog);
@@ -104,10 +97,8 @@ public class AccountController {
         }
     }
 
-    @RequestMapping(value = "/{accountId}/blogs",
-            method = RequestMethod.GET)
-    public ResponseEntity<BlogListResource> findAllBlogs(
-            @PathVariable Long accountId) {
+    @RequestMapping(value = "/{accountId}/blogs", method = RequestMethod.GET)
+    public ResponseEntity<BlogListResource> findAllBlogs(@PathVariable Long accountId) {
         try {
             BlogList blogList = accountService.findBlogsByAccount(accountId);
             BlogListResource blogListRes = new BlogListResourceAsm().toResource(blogList);

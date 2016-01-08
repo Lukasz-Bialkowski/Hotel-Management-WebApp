@@ -43,14 +43,14 @@ public class UserDetailsControllerTest {
         Account foundAccount = new Account();
         foundAccount.setId(1L);
         foundAccount.setPassword("test");
-        foundAccount.setName("test");
+        foundAccount.setLogin("test");
 
         when(service.get(1L)).thenReturn(foundAccount);
 
         mockMvc.perform(get("/rest/account/1"))
                 .andDo(print())
                 .andExpect(jsonPath("$.password", is(notNullValue())))
-                .andExpect(jsonPath("$.name", is(foundAccount.getName())))
+                .andExpect(jsonPath("$.login", is(foundAccount.getLogin())))
                 .andExpect(status().isOk());
     }
 

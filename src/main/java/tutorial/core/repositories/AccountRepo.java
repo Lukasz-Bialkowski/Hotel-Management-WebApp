@@ -12,6 +12,6 @@ import java.util.List;
 public interface AccountRepo {
     public List<Account> findAllAccounts();
     public Account findAccount(Long id);
-    public Account findAccountByName(String name);
+    public Account findAccountByLogin(String login);
     public Account createAccount(Account data);
 }

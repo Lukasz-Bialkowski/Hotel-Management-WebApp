@@ -37,12 +37,12 @@ public class UserDetailsControllerITest {
         Account foundAccount = new Account();
         foundAccount.setId(1L);
         foundAccount.setPassword("testowy");
-        foundAccount.setName("testowy");
+        foundAccount.setLogin("testowy");
 
         accountsRepository.save(foundAccount);
 
-        Account test = accountsRepository.findByNameContaining("estow");
+        Account test = accountsRepository.findByLoginContaining("estow");
 
-        Assert.assertEquals(test.getName(), foundAccount.getName());
+        Assert.assertEquals(test.getLogin(), foundAccount.getLogin());
     }
 }
