@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import tutorial.core.crud.CRUDController;
 import tutorial.core.crud.CRUDService;
 import tutorial.core.models.entities.Account;
-import tutorial.core.services.UserDetailsService;
+import tutorial.core.services.AccountsService;
 
 /**
  * Created by luke on 06.01.16.
@@ -17,10 +17,10 @@ import tutorial.core.services.UserDetailsService;
 public class AccountDetailsController extends CRUDController<Account> {
 
     @Autowired
-    private UserDetailsService userDetailsService;
+    private AccountsService accountsService;
 
     @Override
     protected CRUDService<Account> getService() {
-        return userDetailsService;
+        return accountsService;
     }
 }

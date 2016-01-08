@@ -9,11 +9,10 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import tutorial.core.models.entities.Account;
-import tutorial.core.services.UserDetailsService;
+import tutorial.core.services.AccountsService;
 import tutorial.rest.mvc.AccountDetailsController;
 
 import static org.hamcrest.Matchers.*;
-import static org.hamcrest.Matchers.endsWith;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -26,7 +25,7 @@ public class UserDetailsControllerTest {
     AccountDetailsController controller;
 
     @Mock
-    private UserDetailsService service;
+    private AccountsService service;
 
     private MockMvc mockMvc;
 

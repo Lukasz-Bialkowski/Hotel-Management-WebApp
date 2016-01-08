@@ -24,15 +24,20 @@ angular.module('ngBoilerplate.account', ['ui.router', 'ngResource'])
 })
 .factory('sessionService', function() {
     var session = {};
+    var str = {};
     session.login = function(data) {
         alert('Zalogowany jako ' + data.login + " haslo " + data.password);
         localStorage.setItem("session", data);
+        str = data;
     };
     session.logout = function() {
         localStorage.removeItem("session");
     };
     session.isLoggedIn = function() {
         return localStorage.getItem("session") !== null;
+    };
+    session.getUser = function() {
+        return str;
     };
     return session;
 })

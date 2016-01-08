@@ -42,6 +42,7 @@ angular.module( 'ngBoilerplate.home', [
 .controller( 'HomeCtrl', function HomeController( $scope, sessionService) {
     $scope.isLoggedIn = sessionService.isLoggedIn;
     $scope.logout = sessionService.logout;
+
 })
 
 ;

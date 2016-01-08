@@ -1,4 +1,4 @@
-angular.module('ngBoilerplate.profile', ['ui.router', 'ngResource'])
+angular.module('ngBoilerplate.profile', ['ui.router', 'ngResource', 'ngBoilerplate.account'])
 .config(function($stateProvider){
     $stateProvider.state('profile', {
         url:'/profile',
@@ -10,22 +10,36 @@ angular.module('ngBoilerplate.profile', ['ui.router', 'ngResource'])
         },
         data : { pageTitle : "Menu" }
     })
-    .state('reservations', {
-        url : 'reservations',
+    .state('profile.reservations', {
+        url : '/reservations',
         views : {
-            'main': {
-                templateUrl : 'reservations.tpl.html',
-                controller: 'ReservationsCtrl'
+            'right': {
+                templateUrl : 'profile/reservations.tpl.html',
+                controller: 'ProfileCtrl'
             }
         },
         data : { pageTitle : "Rezerwacje" }
     })
 })
-.factory('ProfileService', function($resource) {
-    var resource = $resource("/basic-web-app/rest/accounts/:id/:secId/:operation/:page",{},{
+.factory('ReservationsService', function($resource) {
+    var resource = $resource("/basic-web-app/rest/profile/reservations/:id/:secId/:operation/:page",{},{
         list : {
             method : 'GET',
             isArray : true
+        },
+        listCurrentReservations : {
+            method : 'GET',
+            isArray : true,
+            params : {
+                operation : 'listCurrentReservations'
+            }
+        },
+        listHistoryReservations : {
+            method : 'GET',
+            isArray : true,
+            params : {
+                operation : 'listHistoryReservations'
+            }
         },
         get : {
             method : 'GET'
@@ -62,8 +76,23 @@ angular.module('ngBoilerplate.profile', ['ui.router', 'ngResource'])
     });
     return resource;
  })
-.controller('ProfileCtrl', function($scope, $state, ProfileService){
-    ProfileService.get({id:1});
+.controller('ProfileCtrl', function($scope, $state, ReservationsService, sessionService){
+    ReservationsService.get({id:1});
+    $scope.user = sessionService.getUser();
+    $scope.reservations = [];
+    $scope.getCurrentReservations = function() {
+        $scope.title = "Obecne rezerwacje";
+        ReservationsService.listCurrentReservations({},function(response){
+            $scope.reservations = response;
+        });
+    };
+    $scope.getHistoryReservations = function() {
+        $scope.title = "Historia rezerwacji";
+        ReservationsService.listHistoryReservations({},function(response){
+            $scope.reservations = response;
+        });
+    };
+
 
 })
 .controller('ReservationsCtrl', function($scope, $state){

@@ -1,0 +1,39 @@
+<div >
+    <div>
+        <h2>Wybierz rezerwacje</h2>
+        <p><strong>Note:</strong> The <strong>data-parent</strong> attribute makes sure that all collapsible elements under the specified parent will be closed when one of the collapsible item is shown.</p>
+        <div class="panel-group" id="accordion">
+            <div class="panel panel-default">
+                <div class="panel-heading" ng-click="getCurrentReservations()">
+                    <h4 class="panel-title">
+                        Obecne rezerwacje
+                    </h4>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading" ng-click="getHistoryReservations()">
+                    <h4 class="panel-title">
+                        Historia rezerwacji
+                    </h4>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <div>
+            <h2>{{title}}</h2>
+            <p ng-if="title"><strong>Note:</strong> The <strong>data-parent</strong> attribute makes sure that all collapsible elements under the specified parent will be closed when one of the collapsible item is shown.</p>
+            <div class="panel-group" >
+                <div class="panel panel-default" ng-repeat="item in reservations">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            Numer rezerwacji: {{item.id}}, Poczatek rezerwacji: {{item.startDate}} , Status: {{item.status}}
+                        </h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

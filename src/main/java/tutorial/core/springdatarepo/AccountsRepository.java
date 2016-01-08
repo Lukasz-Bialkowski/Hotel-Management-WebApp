@@ -9,4 +9,5 @@ import tutorial.core.models.entities.Account;
 public interface AccountsRepository extends JpaRepository<Account, Long> {
 
     Account findByLoginContaining(String login);
+    Account findByLogin(String login);
 }

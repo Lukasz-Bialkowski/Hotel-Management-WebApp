@@ -574,26 +574,79 @@ angular.module("home/home.tpl.html", []).run(["$templateCache", function($templa
 
 angular.module("profile/profile.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("profile/profile.tpl.html",
-    "<div class=\"panel-group\">\n" +
-    "    <div class=\"panel panel-default\">\n" +
-    "        <div class=\"panel-heading\">\n" +
-    "            <h4 class=\"panel-title\">\n" +
-    "                <a data-toggle=\"collapse\" href=\"#collapse1\">Collapsible list group</a>\n" +
-    "            </h4>\n" +
+    "<div class=\"container\">\n" +
+    "    <div class=\"col-md-4\">\n" +
+    "    <h2>Accordion Example</h2>\n" +
+    "    <p><strong>Note:</strong> The <strong>data-parent</strong> attribute makes sure that all collapsible elements under the specified parent will be closed when one of the collapsible item is shown.</p>\n" +
+    "    <div class=\"panel-group\" id=\"accordion\">\n" +
+    "        <div class=\"panel panel-default\">\n" +
+    "            <div class=\"panel-heading\">\n" +
+    "                <h4 class=\"panel-title\">\n" +
+    "                    Edytuj profil\n" +
+    "                </h4>\n" +
+    "            </div>\n" +
     "        </div>\n" +
-    "        <div id=\"collapse1\" class=\"panel-collapse collapse\">\n" +
-    "            <ul class=\"list-group\">\n" +
-    "                <li class=\"list-group-item\">One</li>\n" +
-    "                <li class=\"list-group-item\">Two</li>\n" +
-    "                <li class=\"list-group-item\">Three</li>\n" +
-    "            </ul>\n" +
-    "            <div class=\"panel-footer\">Footer</div>\n" +
+    "        <div class=\"panel panel-default\">\n" +
+    "            <div class=\"panel-heading\">\n" +
+    "                <h4 class=\"panel-title\">\n" +
+    "                    Zmien zdjecie profilowe{{something}}\n" +
+    "                </h4>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "        <div class=\"panel panel-default\">\n" +
+    "            <div class=\"panel-heading\" ui-sref=\"profile.reservations\">\n" +
+    "                <h4 class=\"panel-title\">\n" +
+    "                    Moje rezerwacje\n" +
+    "                </h4>\n" +
+    "            </div>\n" +
     "        </div>\n" +
     "    </div>\n" +
-    "</div>");
+    "    </div>\n" +
+    "    <div class=\"col-md-8\" ui-view=\"right\">cipka{{user.login}}</div>\n" +
+    "</div>\n" +
+    "");
 }]);
 
 angular.module("profile/reservations.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("profile/reservations.tpl.html",
+    "<div >\n" +
+    "    <div>\n" +
+    "        <h2>Wybierz rezerwacje</h2>\n" +
+    "        <p><strong>Note:</strong> The <strong>data-parent</strong> attribute makes sure that all collapsible elements under the specified parent will be closed when one of the collapsible item is shown.</p>\n" +
+    "        <div class=\"panel-group\" id=\"accordion\">\n" +
+    "            <div class=\"panel panel-default\">\n" +
+    "                <div class=\"panel-heading\" ng-click=\"getCurrentReservations()\">\n" +
+    "                    <h4 class=\"panel-title\">\n" +
+    "                        Obecne rezerwacje\n" +
+    "                    </h4>\n" +
+    "                </div>\n" +
+    "            </div>\n" +
+    "            <div class=\"panel panel-default\">\n" +
+    "                <div class=\"panel-heading\" ng-click=\"getHistoryReservations()\">\n" +
+    "                    <h4 class=\"panel-title\">\n" +
+    "                        Historia rezerwacji\n" +
+    "                    </h4>\n" +
+    "                </div>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "\n" +
+    "    <div>\n" +
+    "        <div>\n" +
+    "            <h2>{{title}}</h2>\n" +
+    "            <p ng-if=\"title\"><strong>Note:</strong> The <strong>data-parent</strong> attribute makes sure that all collapsible elements under the specified parent will be closed when one of the collapsible item is shown.</p>\n" +
+    "            <div class=\"panel-group\" >\n" +
+    "                <div class=\"panel panel-default\" ng-repeat=\"item in reservations\">\n" +
+    "                    <div class=\"panel-heading\">\n" +
+    "                        <h4 class=\"panel-title\">\n" +
+    "                            Numer rezerwacji: {{item.id}}, Poczatek rezerwacji: {{item.startDate}} , Status: {{item.status}}\n" +
+    "                        </h4>\n" +
+    "                    </div>\n" +
+    "                </div>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "\n" +
+    "</div>\n" +
     "");
 }]);
