@@ -331,14 +331,9 @@ angular.module("account/register.tpl.html", []).run(["$templateCache", function(
     "                <div class=\"col-md-4\">\n" +
     "                    <div class=\"form-group\">\n" +
     "                        <label for=\"mailId\" class=\"control-label\">Adres email (wymagane)</label>\n" +
-    "                        <input name=\"email\" class=\"form-control\" placeholder=\"np. jankowalski@o2.pl\" id=\"mailId\"\n" +
-    "                               ng-model=\"current.email\" required\n" +
-    "                               ng-pattern=\"/^[^\\s@]+@[^\\s@]+\\.[^\\s@]{2,}$/\" hrt-btr-validation>\n" +
-    "\n" +
-    "                        <div ng-messages=\"itemForm.email.$error\" ng-show=\"!itemForm.email.$pristine\"\n" +
-    "                             ng-messages-include=\"error-messages\">\n" +
-    "                            <div ng-message=\"pattern\">Wprowadz poprawny adres email!</div>\n" +
-    "                        </div>\n" +
+    "                        <input name=\"email\" type=\"text\" class=\"form-control\" placeholder=\"np. jankowalski@o2.pl\" id=\"mailId\"\n" +
+    "                               ng-model=\"current.email\" required ng-pattern=\"/^[^\\s@]+@[^\\s@]+\\.[^\\s@]{2,}$/\" hrt-btr-validation>\n" +
+    "                        <p ng-show=\"!itemForm.email.$pristine\" ng-if=\"itemForm.email.$error.pattern\">Wprowadz poprawny adres email</p>\n" +
     "                    </div>\n" +
     "                </div>\n" +
     "            </div>\n" +
@@ -359,7 +354,8 @@ angular.module("account/register.tpl.html", []).run(["$templateCache", function(
     "                </div>\n" +
     "                <div class=\"col-md-4\">\n" +
     "                    <div class=\"form-group\">\n" +
-    "                        <label class=\"control-label\">Data urodzenia (wymagane)</label>\n" +
+    "                        <label for=\"birthDate\" class=\"control-label\">Data urodzenia (wymagane)</label>\n" +
+    "                        <input type=\"date\" class=\"form-control\" id=\"birthDate\" ng-model=\"current.birthDate\">{{current.birthDate}}\n" +
     "                    </div>\n" +
     "                </div>\n" +
     "            </div>\n" +
@@ -396,11 +392,7 @@ angular.module("account/register.tpl.html", []).run(["$templateCache", function(
     "                        <input name=\"zipcode\" class=\"form-control\" ng-pattern=\"zipCodePatternPL\" id=\"postcodePLId\"\n" +
     "                               placeholder=\"np. 20-434\" ng-model=\"current.address.postcode\"\n" +
     "                               required hrt-btr-validation>\n" +
-    "\n" +
-    "                        <div ng-messages=\"itemForm.zipcode.$error\" ng-show=\"!itemForm.zipcode.$pristine\"\n" +
-    "                             ng-messages-include=\"error-messages\">\n" +
-    "                            <div ng-message=\"pattern\">Wpisz poprawny kod pocztowy</div>\n" +
-    "                        </div>\n" +
+    "                        <p ng-show=\"!itemForm.zipcode.$pristine\" ng-if=\"itemForm.zipcode.$error.pattern\">Wprowadz poprawny kod pocztowy (99-999)</p>\n" +
     "                    </div>\n" +
     "                </div>\n" +
     "                <div class=\"col-md-6\">\n" +
@@ -420,7 +412,7 @@ angular.module("account/register.tpl.html", []).run(["$templateCache", function(
     "            </div>\n" +
     "        </fieldset>\n" +
     "        <div class=\"row\">\n" +
-    "            <button class=\"btn btn-success center-block\" type=\"submit\">Zaloz konto</button>\n" +
+    "            <button class=\"btn btn-success center-block\" ng-disabled=\"itemForm.$invalid\" type=\"submit\">Zaloz konto</button>\n" +
     "        </div>\n" +
     "    </form>\n" +
     "</div>\n" +

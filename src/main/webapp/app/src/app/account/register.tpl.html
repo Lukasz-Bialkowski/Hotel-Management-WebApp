@@ -23,14 +23,9 @@
                 <div class="col-md-4">
                     <div class="form-group">
                         <label for="mailId" class="control-label">Adres email (wymagane)</label>
-                        <input name="email" class="form-control" placeholder="np. jankowalski@o2.pl" id="mailId"
-                               ng-model="current.email" required
-                               ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/" hrt-btr-validation>
-
-                        <div ng-messages="itemForm.email.$error" ng-show="!itemForm.email.$pristine"
-                             ng-messages-include="error-messages">
-                            <div ng-message="pattern">Wprowadz poprawny adres email!</div>
-                        </div>
+                        <input name="email" type="text" class="form-control" placeholder="np. jankowalski@o2.pl" id="mailId"
+                               ng-model="current.email" required ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/" hrt-btr-validation>
+                        <p ng-show="!itemForm.email.$pristine" ng-if="itemForm.email.$error.pattern">Wprowadz poprawny adres email</p>
                     </div>
                 </div>
             </div>
@@ -51,7 +46,8 @@
                 </div>
                 <div class="col-md-4">
                     <div class="form-group">
-                        <label class="control-label">Data urodzenia (wymagane)</label>
+                        <label for="birthDate" class="control-label">Data urodzenia (wymagane)</label>
+                        <input type="date" class="form-control" id="birthDate" ng-model="current.birthDate">{{current.birthDate}}
                     </div>
                 </div>
             </div>
@@ -88,11 +84,7 @@
                         <input name="zipcode" class="form-control" ng-pattern="zipCodePatternPL" id="postcodePLId"
                                placeholder="np. 20-434" ng-model="current.address.postcode"
                                required hrt-btr-validation>
-
-                        <div ng-messages="itemForm.zipcode.$error" ng-show="!itemForm.zipcode.$pristine"
-                             ng-messages-include="error-messages">
-                            <div ng-message="pattern">Wpisz poprawny kod pocztowy</div>
-                        </div>
+                        <p ng-show="!itemForm.zipcode.$pristine" ng-if="itemForm.zipcode.$error.pattern">Wprowadz poprawny kod pocztowy (99-999)</p>
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -112,7 +104,7 @@
             </div>
         </fieldset>
         <div class="row">
-            <button class="btn btn-success center-block" type="submit">Zaloz konto</button>
+            <button class="btn btn-success center-block" ng-disabled="itemForm.$invalid" type="submit">Zaloz konto</button>
         </div>
     </form>
 </div>

@@ -24,6 +24,7 @@ public class AccountResourceAsm extends ResourceAssemblerSupport<Account, Accoun
         res.setEmail(account.getEmail());
         res.setRid(account.getId());
         res.setName(account.getName());
+        res.setBirthDate(account.getBirthDate());
         res.setSurname(account.getSurname());
         res.add(linkTo(methodOn(AccountController.class).getAccount(account.getId())).withSelfRel());
         res.add(linkTo(methodOn(AccountController.class).findAllBlogs(account.getId())).withRel("blogs"));

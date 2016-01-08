@@ -15,8 +15,10 @@ public class Reservation implements Serializable{
     @GeneratedValue
     Long id;
 
+    @Temporal( TemporalType.DATE )
     Date startDate;
 
+    @Temporal( TemporalType.DATE )
     Date endDate;
 
     Double totalCost;

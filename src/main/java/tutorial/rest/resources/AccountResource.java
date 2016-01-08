@@ -6,6 +6,8 @@ import org.springframework.hateoas.ResourceSupport;
 import tutorial.core.models.entities.Account;
 import tutorial.core.models.entities.Address;
 
+import java.util.Date;
+
 /**
  * Created by Chris on 6/28/14.
  */
@@ -25,9 +27,20 @@ public class AccountResource extends ResourceSupport {
 
     private Long rid;
 
+    private Date birthDate;
 
+
+    public Date getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(Date birthDate) {
+        this.birthDate = birthDate;
+    }
 
     /**=============================*/
+
+
 
     public String getName() {
         return name;
@@ -96,6 +109,7 @@ public class AccountResource extends ResourceSupport {
         account.setId(rid);
         account.setSurname(surname);
         account.setName(name);
+        account.setBirthDate(birthDate);
         return account;
     }
 }

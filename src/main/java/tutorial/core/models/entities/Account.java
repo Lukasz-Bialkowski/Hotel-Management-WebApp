@@ -1,8 +1,11 @@
 package tutorial.core.models.entities;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -24,6 +27,9 @@ public class Account implements Serializable{
     private String email;
 
     private String password;
+
+    @Temporal( TemporalType.DATE )
+    private Date birthDate;
 
     @OneToOne(cascade = CascadeType.ALL)
     private Address address;
@@ -95,6 +101,14 @@ public class Account implements Serializable{
 
     public void setReservations(List<Reservation> reservations) {
         this.reservations = reservations;
+    }
+
+    public Date getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(Date birthDate) {
+        this.birthDate = birthDate;
     }
 
     @Override
