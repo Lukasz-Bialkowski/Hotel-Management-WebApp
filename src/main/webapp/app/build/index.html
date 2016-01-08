@@ -94,10 +94,10 @@
                 Jak do nas trafic?
               </a>
             </li>
-            <li ng-show="isLoggedIn()">
-              <a href="https://github.com/ngbp/ngbp/issues">
+            <li ui-sref-active="active" ng-show="isLoggedIn()">
+              <a href ui-sref="profile">
                 <i class="fa fa-comments"></i>
-                Profil {{current.login}}
+                Moje konto
               </a>
             </li>
             <span class="pull-right">

@@ -1,4 +1,4 @@
-angular.module('templates-app', ['about/about.tpl.html', 'account/login.tpl.html', 'account/register.tpl.html', 'home/home.tpl.html']);
+angular.module('templates-app', ['about/about.tpl.html', 'account/login.tpl.html', 'account/register.tpl.html', 'home/home.tpl.html', 'profile/profile.tpl.html', 'profile/reservations.tpl.html']);
 
 angular.module("about/about.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("about/about.tpl.html",
@@ -569,5 +569,31 @@ angular.module("home/home.tpl.html", []).run(["$templateCache", function($templa
     "  </div>\n" +
     "</div>\n" +
     "\n" +
+    "");
+}]);
+
+angular.module("profile/profile.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("profile/profile.tpl.html",
+    "<div class=\"panel-group\">\n" +
+    "    <div class=\"panel panel-default\">\n" +
+    "        <div class=\"panel-heading\">\n" +
+    "            <h4 class=\"panel-title\">\n" +
+    "                <a data-toggle=\"collapse\" href=\"#collapse1\">Collapsible list group</a>\n" +
+    "            </h4>\n" +
+    "        </div>\n" +
+    "        <div id=\"collapse1\" class=\"panel-collapse collapse\">\n" +
+    "            <ul class=\"list-group\">\n" +
+    "                <li class=\"list-group-item\">One</li>\n" +
+    "                <li class=\"list-group-item\">Two</li>\n" +
+    "                <li class=\"list-group-item\">Three</li>\n" +
+    "            </ul>\n" +
+    "            <div class=\"panel-footer\">Footer</div>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "</div>");
+}]);
+
+angular.module("profile/reservations.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("profile/reservations.tpl.html",
     "");
 }]);

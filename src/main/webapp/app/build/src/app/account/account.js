@@ -25,7 +25,7 @@ angular.module('ngBoilerplate.account', ['ui.router', 'ngResource'])
 .factory('sessionService', function() {
     var session = {};
     session.login = function(data) {
-        alert('user logged in with credentials ' + data.login + " and " + data.password);
+        alert('Zalogowany jako ' + data.login + " haslo " + data.password);
         localStorage.setItem("session", data);
     };
     session.logout = function() {
