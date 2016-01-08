@@ -5,6 +5,7 @@ angular.module( 'ngBoilerplate', [
   'ngBoilerplate.about',
   'ngBoilerplate.account',
   'ngBoilerplate.profile',
+  'ngBoilerplate.reservations',
   'ui.router'
 ])
 

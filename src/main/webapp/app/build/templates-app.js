@@ -1,4 +1,4 @@
-angular.module('templates-app', ['about/about.tpl.html', 'account/login.tpl.html', 'account/register.tpl.html', 'home/home.tpl.html', 'profile/profile.tpl.html', 'profile/reservations.tpl.html']);
+angular.module('templates-app', ['about/about.tpl.html', 'account/login.tpl.html', 'account/register.tpl.html', 'home/home.tpl.html', 'profile/profile.tpl.html', 'profile/reservations.tpl.html', 'reservations/avreservations.tpl.html']);
 
 angular.module("about/about.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("about/about.tpl.html",
@@ -594,7 +594,7 @@ angular.module("profile/profile.tpl.html", []).run(["$templateCache", function($
     "        </div>\n" +
     "    </div>\n" +
     "    </div>\n" +
-    "    <div class=\"col-md-8\" ui-view=\"right\">cipka{{user.login}}</div>\n" +
+    "    <div class=\"col-md-8\" ui-view=\"right\"></div>\n" +
     "</div>\n" +
     "");
 }]);
@@ -641,4 +641,23 @@ angular.module("profile/reservations.tpl.html", []).run(["$templateCache", funct
     "\n" +
     "</div>\n" +
     "");
+}]);
+
+angular.module("reservations/avreservations.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("reservations/avreservations.tpl.html",
+    "<div class=\"container\">\n" +
+    "    <div class=\"col-md-10\">\n" +
+    "        <h2>Accordion Example</h2>\n" +
+    "        <p><strong>Note:</strong> The <strong>data-parent</strong> attribute makes sure that all collapsible elements under the specified parent will be closed when one of the collapsible item is shown.</p>\n" +
+    "        <div class=\"panel-group\" id=\"accordion\">\n" +
+    "            <div class=\"panel panel-default\" ng-repeat=\"item in availableReservations  | orderBy:'startDate'\">\n" +
+    "                <div class=\"panel-heading\" ng-click=\"addReservationToUser(item, $index)\">\n" +
+    "                    <h4 class=\"panel-title\">\n" +
+    "                        Pokoj: nr {{item.room.roomNr}} , standard: {{item.room.standard}} | Data: {{item.startDate | date:'yyyy-MM-dd'}} - {{item.endDate | date:'yyyy-MM-dd'}} | Koszt: {{item.totalCost}}zl\n" +
+    "                    </h4>\n" +
+    "                </div>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "</div>");
 }]);

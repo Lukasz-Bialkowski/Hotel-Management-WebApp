@@ -44,15 +44,15 @@ angular.module('ngBoilerplate.account', ['ui.router', 'ngResource'])
 .factory('accountService', function($resource) {
     var service = {};
     service.register = function(account, success, failure) {
-        var Account = $resource("/basic-web-app/rest/accounts");
+        var Account = $resource("/basic-web-app/rest/account/save");
         Account.save({}, account, success, failure);
     };
     service.userExists = function(account, success, failure) {
-        var Account = $resource("/basic-web-app/rest/accounts");
+        var Account = $resource("/basic-web-app/rest/account/credentials");
         var data = Account.get({login:account.login}, function(data) {
-            var accounts = data.accounts;
-            if(accounts.length !== 0) {
-                success(accounts[0]);
+
+            if(data.login) {
+                success(data);
             } else {
                 failure();
             }

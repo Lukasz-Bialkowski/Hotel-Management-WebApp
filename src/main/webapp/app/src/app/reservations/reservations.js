@@ -1,27 +1,18 @@
-angular.module('ngBoilerplate.profile', ['ui.router', 'ngResource', 'ngBoilerplate.account'])
+angular.module('ngBoilerplate.reservations', ['ui.router', 'ngResource', 'ngBoilerplate.account'])
 .config(function($stateProvider){
-    $stateProvider.state('profile', {
-        url:'/profile',
+    $stateProvider.state('reservations', {
+        url:'/reservations',
         views: {
             'main' : {
-                templateUrl : 'profile/profile.tpl.html',
-                controller : 'ProfileCtrl'
+                templateUrl : 'reservations/avreservations.tpl.html',
+                controller : 'ReservationCtrl'
             }
         },
-        data : { pageTitle : "Menu" }
+        data : { pageTitle : "Rezerwacja" }
     })
-    .state('profile.reservations', {
-        url : '/reservations',
-        views : {
-            'right': {
-                templateUrl : 'profile/reservations.tpl.html',
-                controller: 'ProfileCtrl'
-            }
-        },
-        data : { pageTitle : "Rezerwacje" }
-    })
+
 })
-.factory('ReservationsService', function($resource) {
+.factory('AvailableReservationsService', function($resource) {
     var resource = $resource("/basic-web-app/rest/profile/reservations/:id/:secId/:operation/:page",{},{
         list : {
             method : 'GET',
@@ -76,8 +67,9 @@ angular.module('ngBoilerplate.profile', ['ui.router', 'ngResource', 'ngBoilerpla
     });
     return resource;
  })
-.controller('ProfileCtrl', function($scope, $state, ReservationsService, sessionService){
+.controller('ReservationCtrl', function($scope, $state, AvailableReservationsService, sessionService){
     $scope.user = sessionService.getUser();
+    $scope.isLoggedIn = sessionService.isLoggedIn;
     $scope.reservations = [];
     $scope.getCurrentReservations = function() {
         $scope.title = "Obecne rezerwacje";
@@ -91,6 +83,19 @@ angular.module('ngBoilerplate.profile', ['ui.router', 'ngResource', 'ngBoilerpla
             $scope.reservations = response;
         });
     };
-
+    $scope.availableReservations = [
+        {"id":null,"startDate":1452293439063,"endDate":1452293439063,"totalCost":12.3,"room":{"id":null,"roomNr":16,"standard":"WYSOKI"},"status":"AKTYWNA"},
+        {"id":null,"startDate":1452293439063,"endDate":1452293439063,"totalCost":12.3,"room":{"id":null,"roomNr":16,"standard":"WYSOKI"},"status":"AKTYWNA"},
+        {"id":null,"startDate":1452293439063,"endDate":1452293439063,"totalCost":12.3,"room":{"id":null,"roomNr":16,"standard":"WYSOKI"},"status":"AKTYWNA"},
+        {"id":null,"startDate":1452293439063,"endDate":1452293439063,"totalCost":12.3,"room":{"id":null,"roomNr":16,"standard":"WYSOKI"},"status":"AKTYWNA"},
+        {"id":null,"startDate":1452293439063,"endDate":1452293439063,"totalCost":12.3,"room":{"id":null,"roomNr":16,"standard":"WYSOKI"},"status":"AKTYWNA"},
+        {"id":null,"startDate":1452293439063,"endDate":1452293439063,"totalCost":12.3,"room":{"id":null,"roomNr":16,"standard":"WYSOKI"},"status":"AKTYWNA"}
+    ];
+    $scope.addReservationToUser = function(item, indeks){
+        AvailableReservationsService.addReservationToUser({accoundid:$scope.user.id, reservation:item },function(response){
+           alert("Dodano rezerwacje dla uzytkownika "+ $scope.user.login);
+        });
+        $scope.availableReservations.splice(indeks, 1);
+    };
 
 });

@@ -75,10 +75,10 @@
               </a>
             </li>
 
-            <li ui-sref-active="active">
-              <a href ui-sref="directions">
+            <li ui-sref-active="active" ng-show="isLoggedIn()">
+              <a href ui-sref="reservations">
                 <i class="fa fa-github-alt"></i>
-                Jak do nas trafic?
+                Rezerwacja
               </a>
             </li>
             <li ui-sref-active="active" ng-show="isLoggedIn()">

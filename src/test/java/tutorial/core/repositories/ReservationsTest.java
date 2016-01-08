@@ -1,5 +1,7 @@
 package tutorial.core.repositories;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -56,6 +58,13 @@ public class ReservationsTest {
         List<Reservation> currentReservations = service.getCurrentReservations();
         List<Reservation> historyReservations = service.getHistoryReservations();
         System.out.println(historyReservations.iterator().next());
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        try {
+            System.out.println(objectMapper.writeValueAsString(currentReservation));
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
 
         Assert.assertTrue(historyReservations.size() == 1);
         Assert.assertTrue(currentReservations.size() >= 1);
