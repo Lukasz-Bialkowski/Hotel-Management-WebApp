@@ -34,7 +34,7 @@ public class Account implements Serializable{
     @OneToOne(cascade = CascadeType.ALL)
     private Address address;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval=true)
     List<Reservation> reservations = new ArrayList<Reservation>();
 
     /**============================================*/

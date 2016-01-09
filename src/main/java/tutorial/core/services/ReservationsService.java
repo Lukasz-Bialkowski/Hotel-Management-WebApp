@@ -16,4 +16,6 @@ public interface ReservationsService extends CRUDService<Reservation> {
 
     Reservation addReservationToUser(Long id, Reservation reservation);
 
+    void removeForAccount(Long id,Long resId);
+
 }

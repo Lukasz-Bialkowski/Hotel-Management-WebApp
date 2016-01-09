@@ -72,6 +72,12 @@ angular.module('ngBoilerplate.profile', ['ui.router', 'ngResource', 'ngBoilerpla
             params : {
                 operation : 'filter'
             }
+        },
+        deleteReservation : {
+            method : 'DELETE',
+            params : {
+                operation : 'deleteReservation'
+            }
         }
     });
     return resource;
@@ -91,6 +97,23 @@ angular.module('ngBoilerplate.profile', ['ui.router', 'ngResource', 'ngBoilerpla
             $scope.reservations = response;
         });
     };
+    $scope.cancelAvailable = function(startDate) {
+        var today = new Date();
+        var last = today.getTime() - 3*(24*60*60*1000);
+        var start = Date.parse(startDate);
 
+//        console.log("Ostatnia mozliwa data: " + last);
+//        console.log("Poczatek rezerwacji : "+ start);
+//        console.log("Poczatek rezerwacji mniejszy od ostatniej mozliwej daty?: " + (start<last));
+
+        return start<last;
+    };
+    $scope.cancelReservation = function(reservationId){
+        ReservationsService.deleteReservation({id:$scope.user.id, resId:reservationId}, function(response){
+            alert("Anulowano rezerwacje");
+            $scope.getCurrentReservations();
+            $scope.getHistoryReservations();
+        });
+    };
 
 });

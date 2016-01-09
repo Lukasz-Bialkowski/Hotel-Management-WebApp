@@ -25,13 +25,29 @@
             <h2>{{title}}</h2>
             <p ng-if="title"><strong>Note:</strong> The <strong>data-parent</strong> attribute makes sure that all collapsible elements under the specified parent will be closed when one of the collapsible item is shown.</p>
             <div class="panel-group" >
-                <div class="panel panel-default" ng-repeat="item in reservations">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            Numer rezerwacji: {{item.id}}, Poczatek rezerwacji: {{item.startDate}} , Status: {{item.status}}
-                        </h4>
-                    </div>
-                </div>
+                <accordion close-others="false">
+                    <accordion-group ng-repeat="item in reservations" heading="Numer rezerwacji: {{item.id}}, Poczatek rezerwacji: {{item.startDate}} , Status: {{item.status}}">
+                        <div class="row">
+                            <div >
+                                <div class="thumbnail work-item">
+                                    <div >
+                                        <!--<p>-->
+                                            <fieldset>
+                                                <legend>Dane rezerwacji</legend>
+                                                <strong>Numer rezerwacji:</strong> #{{item.id}}</br>
+                                                <strong>Termin:</strong> {{item.startDate | date:'yyyy-MM-dd'}} - {{item.endDate | date:'yyyy-MM-dd'}}</br>
+                                                <strong>Status:</strong> {{item.status}}</br>
+                                                <strong>Pokoj:</strong> nr: {{item.room.roomNr}}, standard: {{item.room.standard}}</br>
+                                                <strong>Koszt:</strong> {{item.totalCost}}zl</br><hr>
+                                                <button type="button" ng-if="cancelAvailable(item.startDate)" class="btn btn-danger" ng-click="cancelReservation(item.id)">Anuluj rezerwacje</button>
+                                            </fieldset>
+                                        <!--</p>-->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </accordion-group>
+                </accordion>
             </div>
         </div>
     </div>

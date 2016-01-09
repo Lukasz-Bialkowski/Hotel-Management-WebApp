@@ -54,4 +54,18 @@ public class DefaultReservationService extends AbstractCRUDService<Reservation> 
         int indeks = persistedAccount.getReservations().size()-1;
         return persistedAccount.getReservations().get(indeks);
     }
+
+    @Override
+    public void removeForAccount(Long id, Long resId) {
+        Account owner = accountsRepository.findOne(id);
+        int global=-1;
+        for(int i =0; i<owner.getReservations().size();i++){
+            if(owner.getReservations().get(i).getId().equals(resId)){
+                global = i;
+            }
+        }
+        if(global!=-1)
+            owner.getReservations().remove(global);
+        accountsRepository.save(owner);
+    }
 }

@@ -46,4 +46,13 @@ public class ReservationsController extends CRUDController<Reservation> {
     protected CRUDService<Reservation> getService() {
         return reservationsService;
     }
+
+    @RequestMapping(
+            method = {RequestMethod.DELETE},
+            value = {"/{id}/deleteReservation"}
+    )
+    @ResponseBody
+    public void remove(@PathVariable("id") Long id, @RequestParam("resId") Long resId) {
+        this.reservationsService.removeForAccount(id,resId);
+    }
 }

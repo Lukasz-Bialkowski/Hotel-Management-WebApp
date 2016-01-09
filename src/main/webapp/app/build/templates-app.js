@@ -628,13 +628,29 @@ angular.module("profile/reservations.tpl.html", []).run(["$templateCache", funct
     "            <h2>{{title}}</h2>\n" +
     "            <p ng-if=\"title\"><strong>Note:</strong> The <strong>data-parent</strong> attribute makes sure that all collapsible elements under the specified parent will be closed when one of the collapsible item is shown.</p>\n" +
     "            <div class=\"panel-group\" >\n" +
-    "                <div class=\"panel panel-default\" ng-repeat=\"item in reservations\">\n" +
-    "                    <div class=\"panel-heading\">\n" +
-    "                        <h4 class=\"panel-title\">\n" +
-    "                            Numer rezerwacji: {{item.id}}, Poczatek rezerwacji: {{item.startDate}} , Status: {{item.status}}\n" +
-    "                        </h4>\n" +
-    "                    </div>\n" +
-    "                </div>\n" +
+    "                <accordion close-others=\"false\">\n" +
+    "                    <accordion-group ng-repeat=\"item in reservations\" heading=\"Numer rezerwacji: {{item.id}}, Poczatek rezerwacji: {{item.startDate}} , Status: {{item.status}}\">\n" +
+    "                        <div class=\"row\">\n" +
+    "                            <div >\n" +
+    "                                <div class=\"thumbnail work-item\">\n" +
+    "                                    <div >\n" +
+    "                                        <!--<p>-->\n" +
+    "                                            <fieldset>\n" +
+    "                                                <legend>Dane rezerwacji</legend>\n" +
+    "                                                <strong>Numer rezerwacji:</strong> #{{item.id}}</br>\n" +
+    "                                                <strong>Termin:</strong> {{item.startDate | date:'yyyy-MM-dd'}} - {{item.endDate | date:'yyyy-MM-dd'}}</br>\n" +
+    "                                                <strong>Status:</strong> {{item.status}}</br>\n" +
+    "                                                <strong>Pokoj:</strong> nr: {{item.room.roomNr}}, standard: {{item.room.standard}}</br>\n" +
+    "                                                <strong>Koszt:</strong> {{item.totalCost}}zl</br><hr>\n" +
+    "                                                <button type=\"button\" ng-if=\"cancelAvailable(item.startDate)\" class=\"btn btn-danger\" ng-click=\"cancelReservation(item.id)\">Anuluj rezerwacje</button>\n" +
+    "                                            </fieldset>\n" +
+    "                                        <!--</p>-->\n" +
+    "                                    </div>\n" +
+    "                                </div>\n" +
+    "                            </div>\n" +
+    "                        </div>\n" +
+    "                    </accordion-group>\n" +
+    "                </accordion>\n" +
     "            </div>\n" +
     "        </div>\n" +
     "    </div>\n" +
