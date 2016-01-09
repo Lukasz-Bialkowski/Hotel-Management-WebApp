@@ -57,6 +57,12 @@ angular.module('ngBoilerplate.reservations', ['ui.router', 'ngResource', 'ngBoil
                 operation : 'sortprops'
             }
         },
+        addReservationToUser : {
+            method : 'POST',
+            params : {
+                operation : 'addReservationToUser'
+            }
+        },
         filter : {
             method : 'GET',
             isArray : true,
@@ -92,7 +98,7 @@ angular.module('ngBoilerplate.reservations', ['ui.router', 'ngResource', 'ngBoil
         {"id":null,"startDate":1452293439063,"endDate":1452293439063,"totalCost":12.3,"room":{"id":null,"roomNr":16,"standard":"WYSOKI"},"status":"AKTYWNA"}
     ];
     $scope.addReservationToUser = function(item, indeks){
-        AvailableReservationsService.addReservationToUser({accoundid:$scope.user.id, reservation:item },function(response){
+        AvailableReservationsService.addReservationToUser({id:$scope.user.id}, item,function(response){
            alert("Dodano rezerwacje dla uzytkownika "+ $scope.user.login);
         });
         $scope.availableReservations.splice(indeks, 1);

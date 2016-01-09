@@ -14,4 +14,6 @@ public interface ReservationsService extends CRUDService<Reservation> {
 
     List<Reservation> getHistoryReservations();
 
+    Reservation addReservationToUser(Long id, Reservation reservation);
+
 }
