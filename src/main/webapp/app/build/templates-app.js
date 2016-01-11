@@ -311,7 +311,7 @@ angular.module("account/register.tpl.html", []).run(["$templateCache", function(
     "      Rejestracja\n" +
     "  </h1>\n" +
     "\n" +
-    "    <form name=\"itemForm\" novalidate ng-submit=\"register()\">\n" +
+    "    <form name=\"itemForm\" novalidate ng-submit=\"register()\" ng-init=\"current.enabled = false;\">\n" +
     "        <fieldset>\n" +
     "            <div class=\"row\">\n" +
     "                <div class=\"col-md-4\">\n" +

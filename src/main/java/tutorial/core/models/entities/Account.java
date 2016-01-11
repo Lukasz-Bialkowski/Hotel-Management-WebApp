@@ -28,6 +28,8 @@ public class Account implements Serializable{
 
     private String password;
 
+    private boolean enabled;
+
     @Temporal( TemporalType.DATE )
     private Date birthDate;
 
@@ -49,6 +51,14 @@ public class Account implements Serializable{
 
     public String getLogin() {
         return login;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
     }
 
     public void setLogin(String login) {
@@ -120,6 +130,8 @@ public class Account implements Serializable{
                 ", login='" + login + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
+                ", enabled=" + enabled +
+                ", birthDate=" + birthDate +
                 ", address=" + address +
                 ", reservations=" + reservations +
                 '}';

@@ -32,6 +32,7 @@ angular.module('ngBoilerplate.account', ['ui.router', 'ngResource'])
     };
     session.logout = function() {
         localStorage.removeItem("session");
+        $state.go("home");
     };
     session.isLoggedIn = function() {
         return localStorage.getItem("session") !== null;
@@ -44,18 +45,21 @@ angular.module('ngBoilerplate.account', ['ui.router', 'ngResource'])
 .factory('accountService', function($resource) {
     var service = {};
     service.register = function(account, success, failure) {
-        var Account = $resource("/basic-web-app/rest/account/save");
+        var Account = $resource("/basic-web-app/rest/account/registration");
         Account.save({}, account, success, failure);
     };
     service.userExists = function(account, success, failure) {
         var Account = $resource("/basic-web-app/rest/account/credentials");
         var data = Account.get({login:account.login}, function(data) {
+            console.log(JSON.stringify(data));
+            if(data.login){
+                if(data.enabled===true){
+                    success(data);
+                } else {
+                    failure(data.login);
+                }
+            } else {failure()};
 
-            if(data.login) {
-                success(data);
-            } else {
-                failure();
-            }
         },
         failure);
     };
@@ -67,19 +71,21 @@ angular.module('ngBoilerplate.account', ['ui.router', 'ngResource'])
             sessionService.login(account);
             $state.go("home");
         },
-        function() {
-            alert("Blad podczas proby logowania");
+        function(flaga) {
+            if(flaga){alert("Pierw aktywuj konto w systemie");}
+            else {alert("Blad podczas proby logowania");}
         });
     };
 })
 .controller("RegisterCtrl", function($scope, sessionService, $state, accountService) {
     $scope.zipCodePatternPL = /^[0-9]{2}-[0-9]{3}$/;
-
     $scope.register = function() {
         accountService.register($scope.current,
             function(returnedData) {
-                sessionService.login(returnedData);
+//                sessionService.login(returnedData);
+                alert("Dziękujemy za rejestracje w systemie. \nWysłano wiadomość email z linkiem aktywacyjnym konto.");
                 $state.go("home");
+
             },
             function() {
                 alert("Blad podczas proby rejestracji");

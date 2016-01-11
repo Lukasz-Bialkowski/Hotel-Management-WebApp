@@ -5,6 +5,8 @@ package tutorial.core.services;
  */
 public interface EmailSender {
 
-    public void sendEmail(String templateName, String email, String login);
+    public void sendEmail(String recipientEmail, String subject, String content);
+
+    public void sendActivationEmail(String recipientEmail, String subject, String content);
 
 }

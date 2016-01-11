@@ -7,11 +7,12 @@ public class StaticTemplates {
 
     public static final String ACTIVATION_EMAIL_TITLE = "Aktywacja w Hotelu pod Roza";
 
-    public static String generateEmailContent(String login){
+    public static String generateEmailContent(String login, String link){
         String content =
                 "Drogi " + login + ",\n"
                 + "Dziękujemy za rejestracje w systemie.\n"
                 + "Aby aktywować konto kliknij link poniżej. \n"
+                + link + "\n"
                 + "Życzymy udanego pobytu w hotelu.\n\n"
                 + "---------------\n"
                 + "Obsługa hotelu";

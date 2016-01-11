@@ -51,5 +51,34 @@ public class DefaultEmailSender implements EmailSender {
             System.out.println(e);
         }
     }
+
+    @Override
+    public void sendActivationEmail(String recipientEmail, String subject, String content) {
+        Properties props = new Properties();
+        props.put("mail.smtp.auth", mailSmtpAuth);
+        props.put("mail.smtp.starttls.enable", mailSmtpStarttlsEnable);
+        props.put("mail.smtp.host", mailSmtpHost);
+        props.put("mail.smtp.port", mailSmtpPort);
+
+        Session session = Session.getInstance(props,
+                new javax.mail.Authenticator() {
+                    protected PasswordAuthentication getPasswordAuthentication() {
+                        return new PasswordAuthentication(username, password);
+                    }
+                });
+
+        try {
+            Message message = new MimeMessage(session);
+            message.setFrom(new InternetAddress(mailEmailFrom));
+            message.setRecipients(Message.RecipientType.TO,	InternetAddress.parse(recipientEmail));
+            message.setSubject(subject);
+            message.setText(content);
+
+            Transport.send(message);
+
+        } catch (MessagingException e) {
+            System.out.println(e);
+        }
+    }
 }
 

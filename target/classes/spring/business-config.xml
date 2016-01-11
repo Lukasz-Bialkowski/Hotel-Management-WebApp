@@ -13,7 +13,8 @@
         http://www.springframework.org/schema/tx
         http://www.springframework.org/schema/tx/spring-tx.xsd">
 
-
+    <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+    </bean>
 
     <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
         <property name="username" value="sa"/>
