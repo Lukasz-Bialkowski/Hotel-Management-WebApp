@@ -355,7 +355,7 @@ angular.module("account/register.tpl.html", []).run(["$templateCache", function(
     "                <div class=\"col-md-4\">\n" +
     "                    <div class=\"form-group\">\n" +
     "                        <label for=\"birthDate\" class=\"control-label\">Data urodzenia (wymagane)</label>\n" +
-    "                        <input type=\"date\" class=\"form-control\" id=\"birthDate\" ng-model=\"current.birthDate\">{{current.birthDate}}\n" +
+    "                        <input type=\"date\" class=\"form-control\" id=\"birthDate\" ng-model=\"current.birthDate\">\n" +
     "                    </div>\n" +
     "                </div>\n" +
     "            </div>\n" +

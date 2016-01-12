@@ -24,9 +24,6 @@ public class AccountDetailsController extends CRUDController<Account> {
     @Autowired
     private AccountsService accountsService;
 
-    @Autowired
-    EmailSender emailSender;
-
     @RequestMapping(method = {RequestMethod.GET}, value = "/credentials")
     @ResponseBody
     public Account getAccountByLogin(@RequestParam("login") String login) {
@@ -60,7 +57,7 @@ public class AccountDetailsController extends CRUDController<Account> {
     @RequestMapping(value = "/regitrationConfirm/{token}", method = RequestMethod.GET)
     public String confirmRegistration
             (WebRequest request, @PathVariable("token") String token) {
-        Locale locale = request.getLocale();
+//        Locale locale = request.getLocale();
 
         VerificationToken verificationToken = accountsService.getVerificationToken(token);
         if (verificationToken == null) {

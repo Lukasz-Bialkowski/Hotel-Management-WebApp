@@ -22,7 +22,7 @@ angular.module('ngBoilerplate.account', ['ui.router', 'ngResource'])
             }
     );
 })
-.factory('sessionService', function() {
+.factory('sessionService', function($state) {
     var session = {};
     var str = {};
     session.login = function(data) {
@@ -58,7 +58,7 @@ angular.module('ngBoilerplate.account', ['ui.router', 'ngResource'])
                 } else {
                     failure(data.login);
                 }
-            } else {failure()};
+            } else {failure();}
 
         },
         failure);
@@ -72,7 +72,7 @@ angular.module('ngBoilerplate.account', ['ui.router', 'ngResource'])
             $state.go("home");
         },
         function(flaga) {
-            if(flaga){alert("Pierw aktywuj konto w systemie");}
+            if(flaga){alert("Przed zalogowaniem musisz aktywowac konto w systemie");}
             else {alert("Blad podczas proby logowania");}
         });
     };

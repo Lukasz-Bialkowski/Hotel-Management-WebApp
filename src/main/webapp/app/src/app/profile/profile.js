@@ -19,7 +19,7 @@ angular.module('ngBoilerplate.profile', ['ui.router', 'ngResource', 'ngBoilerpla
             }
         },
         data : { pageTitle : "Rezerwacje" }
-    })
+    });
 })
 .factory('ReservationsService', function($resource) {
     var resource = $resource("/basic-web-app/rest/profile/reservations/:id/:secId/:operation/:page",{},{

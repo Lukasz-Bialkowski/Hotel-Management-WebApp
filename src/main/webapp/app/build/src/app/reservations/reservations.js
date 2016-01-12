@@ -9,7 +9,7 @@ angular.module('ngBoilerplate.reservations', ['ui.router', 'ngResource', 'ngBoil
             }
         },
         data : { pageTitle : "Rezerwacja" }
-    })
+    });
 
 })
 .factory('AvailableReservationsService', function($resource) {
