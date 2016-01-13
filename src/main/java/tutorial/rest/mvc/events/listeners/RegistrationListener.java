@@ -29,12 +29,12 @@ public class RegistrationListener implements ApplicationListener<OnRegistrationC
         String token = UUID.randomUUID().toString();
         accountsService.createVerificationToken(account, token);
         String recipientAddress = account.getEmail();
-        String subject = StaticTemplates.ACTIVATION_EMAIL_TITLE;
+        String subject = StaticTemplates.RESERVATION_CANCELLING_ACTIVATION_EMAIL_TITLE;
         String confirmationUrl = event.getAppUrl() + "/rest/account/regitrationConfirm/" + token;
         String link = "http://localhost:8080" + confirmationUrl;
 
         System.out.println("Link aktywacyjny" + link);
         System.out.println("Przed aktywacja konta: "+ account);
-        emailSender.sendActivationEmail(recipientAddress, subject, StaticTemplates.generateEmailContent(account.getLogin(), link));
+        emailSender.sendActivationEmail(recipientAddress, subject, StaticTemplates.generateRegistrationActivationEmailContent(account.getLogin(), link));
     }
 }

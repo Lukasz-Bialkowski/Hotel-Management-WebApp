@@ -110,7 +110,7 @@ angular.module('ngBoilerplate.profile', ['ui.router', 'ngResource', 'ngBoilerpla
     };
     $scope.cancelReservation = function(reservationId){
         ReservationsService.deleteReservation({id:$scope.user.id, resId:reservationId}, function(response){
-            alert("Anulowano rezerwacje");
+            alert("Na Twoją skrzynkę mailową został wysłany link aktywujacy anulowanie rezerwacji");
             $scope.getCurrentReservations();
             $scope.getHistoryReservations();
         });

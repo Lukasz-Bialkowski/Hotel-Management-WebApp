@@ -23,11 +23,16 @@ public class Reservation implements Serializable{
 
     Double totalCost;
 
+    private boolean enabled;
+
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     Room room;
 
     @Enumerated(EnumType.STRING)
     ReservationStatus status;
+
+    @ManyToOne
+    Account account;
 
     /** ============================ */
 
@@ -76,8 +81,24 @@ public class Reservation implements Serializable{
         return status;
     }
 
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+
     public void setStatus(ReservationStatus status) {
         this.status = status;
+    }
+
+    public Account getAccount() {
+        return account;
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
     }
 
     @Override
@@ -87,6 +108,7 @@ public class Reservation implements Serializable{
                 ", startDate=" + startDate +
                 ", endDate=" + endDate +
                 ", totalCost=" + totalCost +
+                ", enabled=" + enabled +
                 ", room=" + room +
                 ", status=" + status +
                 '}';

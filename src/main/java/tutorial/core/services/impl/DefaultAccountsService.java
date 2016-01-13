@@ -52,4 +52,9 @@ public class DefaultAccountsService extends AbstractCRUDService<Account> impleme
     public VerificationToken getVerificationToken(String VerificationToken) {
         return verificationTokenRepository.findByToken(VerificationToken);
     }
+
+    @Override
+    public Account getAccountById(Long id){
+        return accountsRepository.findOne(id);
+    }
 }

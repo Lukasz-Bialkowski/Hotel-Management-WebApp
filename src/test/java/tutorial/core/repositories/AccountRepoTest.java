@@ -11,8 +11,7 @@ import tutorial.core.services.AccountsService;
 
 import java.util.Date;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 /**
  * Created by Chris on 7/9/14.
@@ -86,17 +85,25 @@ public class AccountRepoTest {
 
     }
 
-//    @Test
-//    @Transactional
-//    public void testFind()
-//    {
-//        account = new Account();
-//        account.setLogin("login");
-//        account.setPassword("password");
-//        repo.createAccount(account);
-//        Account account = repo.findAccount(this.account.getId());
-//        assertNotNull(account);
-//        assertEquals(account.getLogin(), "login");
-//        assertEquals(account.getPassword(), "password");
-//    }
+    @Test
+    public void accountPersistedWithAddedIdAndProperProperties()
+    {
+        account = new Account();
+        account.setLogin("login");
+        account.setPassword("password");
+
+        /** przed zapisem konto nie ma przypisanego ID */
+        assertNull(account.getId());
+
+        accountsService.save(account);
+
+        account = accountsService.findByLogin(account.getLogin());
+        assertNotNull(account);
+        assertEquals(account.getLogin(), "login");
+        assertEquals(account.getPassword(), "password");
+
+        /** przed zapisem konto nie ma przypisanego ID */
+        assertNotNull(account.getId());
+    }
+
 }

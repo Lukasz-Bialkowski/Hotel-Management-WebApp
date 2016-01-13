@@ -16,4 +16,6 @@ public interface AccountsService extends CRUDService<Account> {
     void saveRegisteredUser(Account account);
 
     VerificationToken getVerificationToken(String VerificationToken);
+
+    public Account getAccountById(Long id);
 }

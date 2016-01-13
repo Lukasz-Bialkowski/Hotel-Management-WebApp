@@ -24,6 +24,9 @@ public class AccountDetailsController extends CRUDController<Account> {
     @Autowired
     private AccountsService accountsService;
 
+    @Autowired
+    ApplicationEventPublisher eventPublisher;
+
     @RequestMapping(method = {RequestMethod.GET}, value = "/credentials")
     @ResponseBody
     public Account getAccountByLogin(@RequestParam("login") String login) {
@@ -35,19 +38,16 @@ public class AccountDetailsController extends CRUDController<Account> {
         return accountsService;
     }
 
-    @Autowired
-    ApplicationEventPublisher eventPublisher;
-
     @RequestMapping(value = "registration", method = RequestMethod.POST)
-    public @ResponseBody Account registerUserAccount(@RequestBody Account accountDto,
-                                       WebRequest request) {
+    public @ResponseBody Account registerUserAccount(@RequestBody Account accountDto, WebRequest request) {
 
         Account registered = this.save(accountDto);
 
         try {
             String appUrl = request.getContextPath();
-            eventPublisher.publishEvent(new OnRegistrationCompleteEvent
-                    (registered, request.getLocale(), appUrl));
+            OnRegistrationCompleteEvent event = new OnRegistrationCompleteEvent(registered, request.getLocale(), appUrl);
+
+            eventPublisher.publishEvent(event);
         } catch (Exception me) {
             System.out.println(me);
         }
@@ -55,9 +55,7 @@ public class AccountDetailsController extends CRUDController<Account> {
     }
 
     @RequestMapping(value = "/regitrationConfirm/{token}", method = RequestMethod.GET)
-    public String confirmRegistration
-            (WebRequest request, @PathVariable("token") String token) {
-//        Locale locale = request.getLocale();
+    public String confirmRegistration(WebRequest request, @PathVariable("token") String token) {
 
         VerificationToken verificationToken = accountsService.getVerificationToken(token);
         if (verificationToken == null) {

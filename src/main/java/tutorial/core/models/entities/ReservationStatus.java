@@ -5,6 +5,6 @@ package tutorial.core.models.entities;
  */
 public enum ReservationStatus {
 
-    AKTYWNA, OCZEKUJACY, ZAKONCZONA
+    AKTYWNA, OCZEKUJACY, ANULOWANA, ZAKONCZONA
 
 }
