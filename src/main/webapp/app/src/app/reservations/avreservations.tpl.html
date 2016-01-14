@@ -1,9 +1,11 @@
-<div class="container">
-    <div class="col-md-10">
-        <h2>Accordion Example</h2>
-        <p><strong>Note:</strong> The <strong>data-parent</strong> attribute makes sure that all collapsible elements under the specified parent will be closed when one of the collapsible item is shown.</p>
+<div class="">
+    <div class="">
+        <h1 class="page-header">
+            Gorące okazje!
+        </h1>
+        <p><strong>Uwaga:</strong> <strong>Kliknij na interesującą Cie pozycje aby dokonać rezerwacji.</strong></p>
         <div class="panel-group" id="accordion">
-            <div class="panel panel-default" ng-repeat="item in availableReservations  | orderBy:'startDate'">
+            <div class="panel panel-default" style="cursor:pointer" ng-repeat="item in availableReservations  | orderBy:'startDate'">
                 <div class="panel-heading" ng-click="addReservationToUser(item, $index)">
                     <h4 class="panel-title">
                         Pokoj: nr {{item.room.roomNr}} , standard: {{item.room.standard}} | Data: {{item.startDate | date:'yyyy-MM-dd'}} - {{item.endDate | date:'yyyy-MM-dd'}} | Koszt: {{item.totalCost}}zl

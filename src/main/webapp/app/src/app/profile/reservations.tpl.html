@@ -1,16 +1,16 @@
 <div >
     <div>
         <h2>Wybierz rezerwacje</h2>
-        <p><strong>Note:</strong> The <strong>data-parent</strong> attribute makes sure that all collapsible elements under the specified parent will be closed when one of the collapsible item is shown.</p>
+        <p><strong>Uwaga:</strong> <strong>Wybierz czy chcesz przeglądać obecne rezerwacje czy zakończone już rezerwacje.</strong> </p>
         <div class="panel-group" id="accordion">
-            <div class="panel panel-default">
+            <div class="panel panel-default" style="cursor:pointer">
                 <div class="panel-heading" ng-click="getCurrentReservations()">
                     <h4 class="panel-title">
                         Obecne rezerwacje
                     </h4>
                 </div>
             </div>
-            <div class="panel panel-default">
+            <div class="panel panel-default" style="cursor:pointer">
                 <div class="panel-heading" ng-click="getHistoryReservations()">
                     <h4 class="panel-title">
                         Historia rezerwacji
@@ -23,10 +23,11 @@
     <div>
         <div>
             <h2>{{title}}</h2>
-            <p ng-if="title"><strong>Note:</strong> The <strong>data-parent</strong> attribute makes sure that all collapsible elements under the specified parent will be closed when one of the collapsible item is shown.</p>
+            <p ng-if="title"><strong>Rezerwacje:</strong> Przeglądaj <strong>rezerwacje</strong> Zostaną one wyświetlone w liście poniżej. Kliknij na interesująca Cię pozycje aby zobaczyć szczegóły.</p>
+            <alert type="success" ng-if="reservations.length==0">Brak rezerwacji spelniajacych kryteria</alert>
             <div class="panel-group" >
                 <accordion close-others="false">
-                    <accordion-group ng-repeat="item in reservations" heading="Numer rezerwacji: {{item.id}}, Poczatek rezerwacji: {{item.startDate}} , Status: {{item.status}}">
+                    <accordion-group ng-repeat="item in reservations" style="cursor:pointer" heading="Numer rezerwacji: {{item.id}}, Poczatek rezerwacji: {{item.startDate}} , Status: {{item.status}}">
                                 <div class="thumbnail work-item">
                                     <fieldset>
                                         <legend>Dane rezerwacji</legend>

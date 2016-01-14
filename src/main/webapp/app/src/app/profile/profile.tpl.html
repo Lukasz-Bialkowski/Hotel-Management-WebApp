@@ -1,30 +1,40 @@
-<div class="container">
-    <div class="col-md-4">
-    <h2>Accordion Example</h2>
-    <p><strong>Note:</strong> The <strong>data-parent</strong> attribute makes sure that all collapsible elements under the specified parent will be closed when one of the collapsible item is shown.</p>
-    <div class="panel-group" id="accordion">
+<div class="">
+    <div class="">
+    <div class="well ">
+    <h1>Profil Użytkownika</h1>
+        <hr>
+        <p>
+            <h2>{{user.name}} {{user.surname}}</h2>
+            <strong>Urodzony:</strong> {{user.birthDate}}</br>
+            <strong>Login:</strong> {{user.login}}</br>
+            <strong>Email:</strong> {{user.email}}</br>
+        </p>
+    </div>
+    </div>
+    <div class="row">
+    <div class="panel-group col-md-4" id="accordion">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h4 class="panel-title">
-                    Edytuj profil
-                </h4>
+                <h3 class="panel-title">
+                    <a href="#">Edytuj profil</a>
+                </h3>
             </div>
         </div>
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h4 class="panel-title">
-                    Zmien zdjecie profilowe{{something}}
-                </h4>
+                <h3 class="panel-title">
+                    <a href="#">Zmien zdjecie profilowe</a>
+                </h3>
             </div>
         </div>
         <div class="panel panel-default">
             <div class="panel-heading" ui-sref="profile.reservations">
-                <h4 class="panel-title">
-                    Moje rezerwacje
-                </h4>
+                <h3 class="panel-title">
+                    <a href="#">Moje rezerwacje</a>
+                </h3>
             </div>
         </div>
     </div>
-    </div>
-    <div class="col-md-8" ui-view="right"></div>
+
+    <div class="col-md-8" ui-view="right"></div></div>
 </div>

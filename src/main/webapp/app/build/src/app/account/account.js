@@ -76,6 +76,14 @@ angular.module('ngBoilerplate.account', ['ui.router', 'ngResource'])
             else {alert("Blad podczas proby logowania");}
         });
     };
+    $scope.touchedFormWarn = function(flaga) {
+        if(!flaga){
+            var confirmation = confirm("Uwaga\nUtracisz wszystkie wprowadzone dotychczas dane");
+            if(confirmation){
+                $state.go("home");
+            }
+        }
+    };
 })
 .controller("RegisterCtrl", function($scope, sessionService, $state, accountService) {
     $scope.zipCodePatternPL = /^[0-9]{2}-[0-9]{3}$/;
@@ -90,5 +98,13 @@ angular.module('ngBoilerplate.account', ['ui.router', 'ngResource'])
             function() {
                 alert("Blad podczas proby rejestracji");
         });
+    };
+    $scope.touchedFormWarn = function(flaga) {
+        if(!flaga){
+            var confirmation = confirm("Uwaga\n Utracisz wszystkie wprowadzone dotychczas dane");
+            if(confirmation){
+                $state.go("home");
+            }
+        }
     };
 });

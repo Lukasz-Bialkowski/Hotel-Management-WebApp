@@ -1,4 +1,4 @@
-angular.module('templates-app', ['about/about.tpl.html', 'account/login.tpl.html', 'account/register.tpl.html', 'home/home.tpl.html', 'profile/profile.tpl.html', 'profile/reservations.tpl.html', 'reservations/avreservations.tpl.html']);
+angular.module('templates-app', ['about/about.tpl.html', 'account/login.tpl.html', 'account/register.tpl.html', 'home/home.tpl.html', 'profile/cancelconfirm.tpl.html', 'profile/profile.tpl.html', 'profile/reservations.tpl.html', 'reservations/avreservations.tpl.html']);
 
 angular.module("about/about.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("about/about.tpl.html",
@@ -276,27 +276,33 @@ angular.module("account/login.tpl.html", []).run(["$templateCache", function($te
     "  <h1 class=\"page-header\">\n" +
     "      Logowanie\n" +
     "  </h1>\n" +
+    "\n" +
     "    <form name=\"itemForm\" novalidate ng-submit=\"login()\">\n" +
     "        <fieldset>\n" +
     "            <div class=\"row\">\n" +
     "                <div class=\"col-md-6\">\n" +
     "                    <div class=\"form-group\">\n" +
     "                        <label for=\"loginId\" class=\"control-label\">Login (wymagane)</label>\n" +
-    "                        <input class=\"form-control\" placeholder=\"Wpisz login\" id=\"loginId\" ng-model=\"current.login\" required hrt-btr-validation>\n" +
+    "                        <input class=\"form-control\" placeholder=\"Wpisz login\" id=\"loginId\" ng-model=\"current.login\"\n" +
+    "                               required hrt-btr-validation>\n" +
     "                    </div>\n" +
     "                </div>\n" +
-    "            </div>\n" +
-    "            <div class=\"row\">\n" +
+    "\n" +
     "                <div class=\"col-md-6\">\n" +
     "                    <div class=\"form-group\">\n" +
-    "                        <label for=\"passwordId\" class=\"control-label\">Haslo</label>\n" +
-    "                        <input class=\"form-control\" placeholder=\"Wpisz haslo\" type=\"password\" id=\"passwordId\" ng-model=\"current.password\" required hrt-btr-validation>\n" +
+    "                        <label for=\"passwordId\" class=\"control-label\">Haslo (wymagane)</label>\n" +
+    "                        <input class=\"form-control\" placeholder=\"Wpisz haslo\" type=\"password\" id=\"passwordId\"\n" +
+    "                               ng-model=\"current.password\" required hrt-btr-validation>\n" +
     "                    </div>\n" +
     "                </div>\n" +
     "            </div>\n" +
     "        </fieldset>\n" +
-    "        <div class=\"row\">\n" +
-    "            <button class=\"btn btn-success center-block\" type=\"submit\">Zaloguj</button>\n" +
+    "        <br>\n" +
+    "        <div class=\"\"><br/><br/>\n" +
+    "\n" +
+    "                <button class=\"col-md-3 col-md-offset-3 btn btn-success \" type=\"submit\">Zaloguj</button>&nbsp;\n" +
+    "                <button class=\"col-md-3 btn btn-danger\" ng-click=\"touchedFormWarn(itemForm.$pristine)\">Anuluj</button>\n" +
+    "\n" +
     "        </div>\n" +
     "    </form>\n" +
     "</div>\n" +
@@ -310,7 +316,8 @@ angular.module("account/register.tpl.html", []).run(["$templateCache", function(
     "  <h1 class=\"page-header\">\n" +
     "      Rejestracja\n" +
     "  </h1>\n" +
-    "\n" +
+    "    <p>Wprowadz dane niezbędne do rejestracji w systemie.</br>\n" +
+    "    Na podany poniżej <strong>adres email</strong> zostanie wysłany mail aktywujacy konto.</p>\n" +
     "    <form name=\"itemForm\" novalidate ng-submit=\"register()\" ng-init=\"current.enabled = false;\">\n" +
     "        <fieldset>\n" +
     "            <div class=\"row\">\n" +
@@ -323,7 +330,7 @@ angular.module("account/register.tpl.html", []).run(["$templateCache", function(
     "                </div>\n" +
     "                <div class=\"col-md-4\">\n" +
     "                    <div class=\"form-group\">\n" +
-    "                        <label for=\"passwordId\" class=\"control-label\">Haslo</label>\n" +
+    "                        <label for=\"passwordId\" class=\"control-label\">Haslo (wymagane)</label>\n" +
     "                        <input class=\"form-control\" placeholder=\"Haslo\" type=\"password\" hrt-btr-validation\n" +
     "                               id=\"passwordId\" ng-model=\"current.password\" required>\n" +
     "                    </div>\n" +
@@ -411,8 +418,9 @@ angular.module("account/register.tpl.html", []).run(["$templateCache", function(
     "                </div>\n" +
     "            </div>\n" +
     "        </fieldset>\n" +
-    "        <div class=\"row\">\n" +
-    "            <button class=\"btn btn-success center-block\" ng-disabled=\"itemForm.$invalid\" type=\"submit\">Zaloz konto</button>\n" +
+    "        <div class=\"\"><br/><br/>\n" +
+    "            <button class=\"col-md-3 col-md-offset-3 btn btn-success\" ng-disabled=\"itemForm.$invalid\" type=\"submit\">Zaloz konto</button>\n" +
+    "            <button class=\"col-md-3 btn btn-danger\" ng-click=\"touchedFormWarn(itemForm.$pristine)\" >Anuluj</button>\n" +
     "        </div>\n" +
     "    </form>\n" +
     "</div>\n" +
@@ -423,12 +431,14 @@ angular.module("account/register.tpl.html", []).run(["$templateCache", function(
 angular.module("home/home.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("home/home.tpl.html",
     "<div class=\"jumbotron\">\n" +
-    "  <h1>Non-Trivial AngularJS Made Easy</h1>\n" +
+    "  <h1>Hotel pod Roza</h1>\n" +
     "\n" +
     "  <p class=\"lead\">\n" +
-    "    Everything you need to kickstart AngularJS projects: a best-practice\n" +
-    "    directory structure, an intelligent build system, and the best web design\n" +
-    "    libraries around.\n" +
+    "    Hotel Pod Różą to najstarszy hotel w Krakowie. Od XVII wieku przyjmuje najznamienitszych gości. Zatrzymywali się tu, między innymi, car rosyjski Aleksander I, wielki książę Konstanty, poseł perski do Napoleona – Mohamed Riza, Franciszek Liszt i Honoré de Balzac. Pod szklanym dachem, na dawnym pałacowym dziedzińcu, działają dwie eleganckie restauracje: Restauracja Pod Różą oraz Ristorante Amarone.\n" +
+    "<br><br>\n" +
+    "    „…Znużeni długą podróżą śpimy w „Hotelu Pod Różą” w najlepszym hotelu pod różą. Cienie Balzaka i Konstantego po ścianach suną gęsiego, milczy kanapa zielona nikt nie wypędza demona…. Znużeni długą podróżą śpimy w „Hotelu Pod Różą”, sny się zlatują i wróżą: - wrócicie do domu pod różą i będzie kanapa i kobra i będzie pogoda dobra i przyjdą do was wspomnienia…”\n" +
+    "    <br><br>\n" +
+    "    Agnieszka Osiecka\n" +
     "  </p>\n" +
     "\n" +
     "  <ul class=\"list-inline social-buttons\">\n" +
@@ -471,12 +481,12 @@ angular.module("home/home.tpl.html", []).run(["$templateCache", function($templa
     "    </a>\n" +
     "  </div>\n" +
     "\n" +
-    "    <div class=\"btn-group\" ng-show=\"isLoggedIn()\">\n" +
-    "        <a ng-click=\"logout()\" class=\"btn btn-large btn-default\">\n" +
-    "            <i class=\"fa fa-book\"></i>\n" +
-    "            Logout\n" +
-    "        </a>\n" +
-    "    </div>\n" +
+    "  <div class=\"btn-group\" ng-show=\"isLoggedIn()\">\n" +
+    "      <a ng-click=\"logout()\" class=\"btn btn-large btn-default\">\n" +
+    "          <i class=\"fa fa-book\"></i>\n" +
+    "          Logout\n" +
+    "      </a>\n" +
+    "  </div>\n" +
     "\n" +
     "\n" +
     "</div>\n" +
@@ -484,21 +494,21 @@ angular.module("home/home.tpl.html", []).run(["$templateCache", function($templa
     "<div class=\"marketing\">\n" +
     "  <div class=\"row\">\n" +
     "    <div class=\"col-xs-12 col-sm-6 col-md-4\">\n" +
-    "      <h4><i class=\"fa fa-thumbs-up\"></i> Good to Go!</h4>\n" +
+    "      <h4><i class=\"fa fa-thumbs-up\"></i> Galeria!</h4>\n" +
     "      <p>\n" +
     "        Kickstarts your project quickly, with everything you need, so you can \n" +
     "        focus on what matters: your app.\n" +
     "      </p>\n" +
     "    </div>\n" +
     "    <div class=\"col-xs-12 col-sm-6 col-md-4\">\n" +
-    "      <h4><i class=\"fa fa-magic\"></i> Complete Build System</h4>\n" +
+    "      <h4><i class=\"fa fa-magic\"></i> Przeszle wydarzenia</h4>\n" +
     "      <p>\n" +
     "        A smart, <a href=\"http://gruntjs.com\">Grunt</a>-based build system \n" +
     "        designed to save you time and energy.\n" +
     "      </p>\n" +
     "    </div>\n" +
     "    <div class=\"col-xs-12 col-sm-6 col-md-4\">\n" +
-    "      <h4><i class=\"fa fa-retweet\"></i> Modularization</h4>\n" +
+    "      <h4><i class=\"fa fa-retweet\"></i> Co organizujemy?</h4>\n" +
     "      <p>\n" +
     "        Supports a structure that maintains separation of concerns while\n" +
     "        ensuring maximum code reuse.\n" +
@@ -507,7 +517,7 @@ angular.module("home/home.tpl.html", []).run(["$templateCache", function($templa
     "  </div>\n" +
     "  <div class=\"row\">\n" +
     "    <div class=\"col-xs-12 col-sm-6 col-md-4\">\n" +
-    "      <h4><i class=\"fa fa-star\"></i> AngularJS</h4>\n" +
+    "      <h4><i class=\"fa fa-star\"></i> Co oferujemy?</h4>\n" +
     "      <p>\n" +
     "        JavaScript framework that augments browser-based, single-page \n" +
     "        applications with MVC functionality.\n" +
@@ -515,24 +525,24 @@ angular.module("home/home.tpl.html", []).run(["$templateCache", function($templa
     "      </p>\n" +
     "    </div>\n" +
     "    <div class=\"col-xs-12 col-sm-6 col-md-4\">\n" +
-    "      <h4><i class=\"fa fa-resize-small\"></i> LESS CSS</h4>\n" +
+    "      <h4><i class=\"fa fa-resize-small\"></i> Kim jestesmy?</h4>\n" +
     "      <p>\n" +
     "        The dynamic stylesheet language that extends CSS with efficiency.\n" +
     "        <a href=\"http://lesscss.org\">More &raquo;</a>\n" +
     "      </p>\n" +
     "    </div>\n" +
     "    <div class=\"col-xs-12 col-sm-6 col-md-4\">\n" +
-    "      <h4><i class=\"fa fa-twitter\"></i> Twitter Bootstrap</h4>\n" +
+    "      <h4><i class=\"fa fa-twitter\"></i> Ceny zniżkowe</h4>\n" +
     "      <p>\n" +
     "        Sleek, intuitive, and powerful front-end framework for faster and easier\n" +
     "        web development.\n" +
-    "        <a href=\"http://getbootstrap.com\">More &raquo;</a>\n" +
+    "        <a href=\"http://getbootstrap.com\">Wiecej &raquo;</a>\n" +
     "      </p>\n" +
     "    </div>\n" +
     "  </div>\n" +
     "  <div class=\"row\">\n" +
     "    <div class=\"col-xs-12 col-sm-6 col-md-4\">\n" +
-    "      <h4><i class=\"fa fa-circle\"></i> Angular UI Bootstrap</h4>\n" +
+    "      <h4><i class=\"fa fa-circle\"></i> Jak do nas trafic?</h4>\n" +
     "      <p>\n" +
     "        Pure AngularJS components for Bootstrap written by the \n" +
     "        <a href=\"https://github.com/angular-ui?tab=members\">AngularUI Team</a>.\n" +
@@ -540,7 +550,7 @@ angular.module("home/home.tpl.html", []).run(["$templateCache", function($templa
     "      </p>\n" +
     "    </div>\n" +
     "    <div class=\"col-xs-12 col-sm-6 col-md-4\">\n" +
-    "      <h4><i class=\"fa fa-flag\"></i> Font Awesome</h4>\n" +
+    "      <h4><i class=\"fa fa-flag\"></i> Kontakt do administatora</h4>\n" +
     "      <p>\n" +
     "        The iconic font designed for use with Twitter Bootstrap.\n" +
     "        <a href=\"http://fortawesome.github.com/Font-Awesome\">\n" +
@@ -549,7 +559,7 @@ angular.module("home/home.tpl.html", []).run(["$templateCache", function($templa
     "      </p>\n" +
     "    </div>\n" +
     "    <div class=\"col-xs-12 col-sm-6 col-md-4\">\n" +
-    "      <h4><i class=\"fa fa-asterisk\"></i> Placeholders</h4>\n" +
+    "      <h4><i class=\"fa fa-asterisk\"></i> Kontakt do kierownika</h4>\n" +
     "      <p>\n" +
     "        Client-side image and text placeholder directives written in pure \n" +
     "        AngularJS to make designing mock-ups wicked-fast.\n" +
@@ -564,37 +574,61 @@ angular.module("home/home.tpl.html", []).run(["$templateCache", function($templa
     "");
 }]);
 
+angular.module("profile/cancelconfirm.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("profile/cancelconfirm.tpl.html",
+    "<div class=\"jumbotron\">\n" +
+    "    <h1>Gratulacje</h1>\n" +
+    "    <h2>Transakcja zakończona powodzeniem</h2>\n" +
+    "    <p class=\"lead\">\n" +
+    "        Rezerwacja została <strong>anulowana</strong></br>\n" +
+    "        Możesz zobaczyć zmiane statusu rezerwacji w panelu zarządzania kontem.\n" +
+    "    </p>\n" +
+    "\n" +
+    "    <button ng-click=\"changeStateToProfile()\">Kontynuuj</button>\n" +
+    "</div>");
+}]);
+
 angular.module("profile/profile.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("profile/profile.tpl.html",
-    "<div class=\"container\">\n" +
-    "    <div class=\"col-md-4\">\n" +
-    "    <h2>Accordion Example</h2>\n" +
-    "    <p><strong>Note:</strong> The <strong>data-parent</strong> attribute makes sure that all collapsible elements under the specified parent will be closed when one of the collapsible item is shown.</p>\n" +
-    "    <div class=\"panel-group\" id=\"accordion\">\n" +
+    "<div class=\"\">\n" +
+    "    <div class=\"\">\n" +
+    "    <div class=\"well \">\n" +
+    "    <h1>Profil Użytkownika</h1>\n" +
+    "        <hr>\n" +
+    "        <p>\n" +
+    "            <h2>{{user.name}} {{user.surname}}</h2>\n" +
+    "            <strong>Urodzony:</strong> {{user.birthDate}}</br>\n" +
+    "            <strong>Login:</strong> {{user.login}}</br>\n" +
+    "            <strong>Email:</strong> {{user.email}}</br>\n" +
+    "        </p>\n" +
+    "    </div>\n" +
+    "    </div>\n" +
+    "    <div class=\"row\">\n" +
+    "    <div class=\"panel-group col-md-4\" id=\"accordion\">\n" +
     "        <div class=\"panel panel-default\">\n" +
     "            <div class=\"panel-heading\">\n" +
-    "                <h4 class=\"panel-title\">\n" +
-    "                    Edytuj profil\n" +
-    "                </h4>\n" +
+    "                <h3 class=\"panel-title\">\n" +
+    "                    <a href=\"#\">Edytuj profil</a>\n" +
+    "                </h3>\n" +
     "            </div>\n" +
     "        </div>\n" +
     "        <div class=\"panel panel-default\">\n" +
     "            <div class=\"panel-heading\">\n" +
-    "                <h4 class=\"panel-title\">\n" +
-    "                    Zmien zdjecie profilowe{{something}}\n" +
-    "                </h4>\n" +
+    "                <h3 class=\"panel-title\">\n" +
+    "                    <a href=\"#\">Zmien zdjecie profilowe</a>\n" +
+    "                </h3>\n" +
     "            </div>\n" +
     "        </div>\n" +
     "        <div class=\"panel panel-default\">\n" +
     "            <div class=\"panel-heading\" ui-sref=\"profile.reservations\">\n" +
-    "                <h4 class=\"panel-title\">\n" +
-    "                    Moje rezerwacje\n" +
-    "                </h4>\n" +
+    "                <h3 class=\"panel-title\">\n" +
+    "                    <a href=\"#\">Moje rezerwacje</a>\n" +
+    "                </h3>\n" +
     "            </div>\n" +
     "        </div>\n" +
     "    </div>\n" +
-    "    </div>\n" +
-    "    <div class=\"col-md-8\" ui-view=\"right\"></div>\n" +
+    "\n" +
+    "    <div class=\"col-md-8\" ui-view=\"right\"></div></div>\n" +
     "</div>\n" +
     "");
 }]);
@@ -604,16 +638,16 @@ angular.module("profile/reservations.tpl.html", []).run(["$templateCache", funct
     "<div >\n" +
     "    <div>\n" +
     "        <h2>Wybierz rezerwacje</h2>\n" +
-    "        <p><strong>Note:</strong> The <strong>data-parent</strong> attribute makes sure that all collapsible elements under the specified parent will be closed when one of the collapsible item is shown.</p>\n" +
+    "        <p><strong>Uwaga:</strong> <strong>Wybierz czy chcesz przeglądać obecne rezerwacje czy zakończone już rezerwacje.</strong> </p>\n" +
     "        <div class=\"panel-group\" id=\"accordion\">\n" +
-    "            <div class=\"panel panel-default\">\n" +
+    "            <div class=\"panel panel-default\" style=\"cursor:pointer\">\n" +
     "                <div class=\"panel-heading\" ng-click=\"getCurrentReservations()\">\n" +
     "                    <h4 class=\"panel-title\">\n" +
     "                        Obecne rezerwacje\n" +
     "                    </h4>\n" +
     "                </div>\n" +
     "            </div>\n" +
-    "            <div class=\"panel panel-default\">\n" +
+    "            <div class=\"panel panel-default\" style=\"cursor:pointer\">\n" +
     "                <div class=\"panel-heading\" ng-click=\"getHistoryReservations()\">\n" +
     "                    <h4 class=\"panel-title\">\n" +
     "                        Historia rezerwacji\n" +
@@ -626,10 +660,11 @@ angular.module("profile/reservations.tpl.html", []).run(["$templateCache", funct
     "    <div>\n" +
     "        <div>\n" +
     "            <h2>{{title}}</h2>\n" +
-    "            <p ng-if=\"title\"><strong>Note:</strong> The <strong>data-parent</strong> attribute makes sure that all collapsible elements under the specified parent will be closed when one of the collapsible item is shown.</p>\n" +
+    "            <p ng-if=\"title\"><strong>Rezerwacje:</strong> Przeglądaj <strong>rezerwacje</strong> Zostaną one wyświetlone w liście poniżej. Kliknij na interesująca Cię pozycje aby zobaczyć szczegóły.</p>\n" +
+    "            <alert type=\"success\" ng-if=\"reservations.length==0\">Brak rezerwacji spelniajacych kryteria</alert>\n" +
     "            <div class=\"panel-group\" >\n" +
     "                <accordion close-others=\"false\">\n" +
-    "                    <accordion-group ng-repeat=\"item in reservations\" heading=\"Numer rezerwacji: {{item.id}}, Poczatek rezerwacji: {{item.startDate}} , Status: {{item.status}}\">\n" +
+    "                    <accordion-group ng-repeat=\"item in reservations\" style=\"cursor:pointer\" heading=\"Numer rezerwacji: {{item.id}}, Poczatek rezerwacji: {{item.startDate}} , Status: {{item.status}}\">\n" +
     "                                <div class=\"thumbnail work-item\">\n" +
     "                                    <fieldset>\n" +
     "                                        <legend>Dane rezerwacji</legend>\n" +
@@ -653,12 +688,14 @@ angular.module("profile/reservations.tpl.html", []).run(["$templateCache", funct
 
 angular.module("reservations/avreservations.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("reservations/avreservations.tpl.html",
-    "<div class=\"container\">\n" +
-    "    <div class=\"col-md-10\">\n" +
-    "        <h2>Accordion Example</h2>\n" +
-    "        <p><strong>Note:</strong> The <strong>data-parent</strong> attribute makes sure that all collapsible elements under the specified parent will be closed when one of the collapsible item is shown.</p>\n" +
+    "<div class=\"\">\n" +
+    "    <div class=\"\">\n" +
+    "        <h1 class=\"page-header\">\n" +
+    "            Gorące okazje!\n" +
+    "        </h1>\n" +
+    "        <p><strong>Uwaga:</strong> <strong>Kliknij na interesującą Cie pozycje aby dokonać rezerwacji.</strong></p>\n" +
     "        <div class=\"panel-group\" id=\"accordion\">\n" +
-    "            <div class=\"panel panel-default\" ng-repeat=\"item in availableReservations  | orderBy:'startDate'\">\n" +
+    "            <div class=\"panel panel-default\" style=\"cursor:pointer\" ng-repeat=\"item in availableReservations  | orderBy:'startDate'\">\n" +
     "                <div class=\"panel-heading\" ng-click=\"addReservationToUser(item, $index)\">\n" +
     "                    <h4 class=\"panel-title\">\n" +
     "                        Pokoj: nr {{item.room.roomNr}} , standard: {{item.room.standard}} | Data: {{item.startDate | date:'yyyy-MM-dd'}} - {{item.endDate | date:'yyyy-MM-dd'}} | Koszt: {{item.totalCost}}zl\n" +

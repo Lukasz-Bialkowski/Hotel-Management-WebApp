@@ -98,6 +98,6 @@ public class ReservationsController extends CRUDController<Reservation> {
         reservationsService.save(reservation);
 
         System.out.println(reservation);
-        return "redirect:/index.html#/profile/reservations";
+        return "redirect:/index.html#/cancelconfirmation";
     }
 }

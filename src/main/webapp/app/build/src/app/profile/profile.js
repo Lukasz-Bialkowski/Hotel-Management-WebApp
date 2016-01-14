@@ -19,7 +19,17 @@ angular.module('ngBoilerplate.profile', ['ui.router', 'ngResource', 'ngBoilerpla
             }
         },
         data : { pageTitle : "Rezerwacje" }
-    });
+    })
+    .state('cancelconfirm', {
+            url : '/cancelconfirmation',
+            views : {
+                'main': {
+                    templateUrl : 'profile/cancelconfirm.tpl.html',
+                    controller: 'ConfirmationCtrl'
+                }
+            },
+            data : { pageTitle : "Powodzenie" }
+        });
 })
 .factory('ReservationsService', function($resource) {
     var resource = $resource("/basic-web-app/rest/profile/reservations/:id/:secId/:operation/:page",{},{
@@ -114,6 +124,13 @@ angular.module('ngBoilerplate.profile', ['ui.router', 'ngResource', 'ngBoilerpla
             $scope.getCurrentReservations();
             $scope.getHistoryReservations();
         });
+    };
+
+})
+.controller("ConfirmationCtrl", function($scope, $state, ReservationsService, sessionService) {
+    $scope.changeStateToProfile = function() {
+        sessionService.logout();
+        $state.go("login");
     };
 
 });

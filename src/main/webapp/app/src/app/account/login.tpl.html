@@ -2,27 +2,33 @@
   <h1 class="page-header">
       Logowanie
   </h1>
+
     <form name="itemForm" novalidate ng-submit="login()">
         <fieldset>
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="loginId" class="control-label">Login (wymagane)</label>
-                        <input class="form-control" placeholder="Wpisz login" id="loginId" ng-model="current.login" required hrt-btr-validation>
+                        <input class="form-control" placeholder="Wpisz login" id="loginId" ng-model="current.login"
+                               required hrt-btr-validation>
                     </div>
                 </div>
-            </div>
-            <div class="row">
+
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="passwordId" class="control-label">Haslo</label>
-                        <input class="form-control" placeholder="Wpisz haslo" type="password" id="passwordId" ng-model="current.password" required hrt-btr-validation>
+                        <label for="passwordId" class="control-label">Haslo (wymagane)</label>
+                        <input class="form-control" placeholder="Wpisz haslo" type="password" id="passwordId"
+                               ng-model="current.password" required hrt-btr-validation>
                     </div>
                 </div>
             </div>
         </fieldset>
-        <div class="row">
-            <button class="btn btn-success center-block" type="submit">Zaloguj</button>
+        <br>
+        <div class=""><br/><br/>
+
+                <button class="col-md-3 col-md-offset-3 btn btn-success " type="submit">Zaloguj</button>&nbsp;
+                <button class="col-md-3 btn btn-danger" ng-click="touchedFormWarn(itemForm.$pristine)">Anuluj</button>
+
         </div>
     </form>
 </div>

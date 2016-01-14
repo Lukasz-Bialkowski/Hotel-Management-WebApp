@@ -2,7 +2,8 @@
   <h1 class="page-header">
       Rejestracja
   </h1>
-
+    <p>Wprowadz dane niezbędne do rejestracji w systemie.</br>
+    Na podany poniżej <strong>adres email</strong> zostanie wysłany mail aktywujacy konto.</p>
     <form name="itemForm" novalidate ng-submit="register()" ng-init="current.enabled = false;">
         <fieldset>
             <div class="row">
@@ -15,7 +16,7 @@
                 </div>
                 <div class="col-md-4">
                     <div class="form-group">
-                        <label for="passwordId" class="control-label">Haslo</label>
+                        <label for="passwordId" class="control-label">Haslo (wymagane)</label>
                         <input class="form-control" placeholder="Haslo" type="password" hrt-btr-validation
                                id="passwordId" ng-model="current.password" required>
                     </div>
@@ -103,8 +104,9 @@
                 </div>
             </div>
         </fieldset>
-        <div class="row">
-            <button class="btn btn-success center-block" ng-disabled="itemForm.$invalid" type="submit">Zaloz konto</button>
+        <div class=""><br/><br/>
+            <button class="col-md-3 col-md-offset-3 btn btn-success" ng-disabled="itemForm.$invalid" type="submit">Zaloz konto</button>
+            <button class="col-md-3 btn btn-danger" ng-click="touchedFormWarn(itemForm.$pristine)" >Anuluj</button>
         </div>
     </form>
 </div>
