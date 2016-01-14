@@ -26,7 +26,7 @@ angular.module('ngBoilerplate.account', ['ui.router', 'ngResource'])
     var session = {};
     var str = {};
     session.login = function(data) {
-        alert('Zalogowany jako ' + data.login + " haslo " + data.password);
+        alert('Zalogowany jako ' + data.login);
         localStorage.setItem("session", data);
         str = data;
     };
@@ -51,7 +51,7 @@ angular.module('ngBoilerplate.account', ['ui.router', 'ngResource'])
     service.userExists = function(account, success, failure) {
         var Account = $resource("/basic-web-app/rest/account/credentials");
         var data = Account.get({login:account.login}, function(data) {
-            console.log(JSON.stringify(data));
+
             if(data.login){
                 if(data.enabled===true){
                     success(data);

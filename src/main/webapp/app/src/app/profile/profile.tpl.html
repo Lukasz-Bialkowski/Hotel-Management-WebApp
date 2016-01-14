@@ -1,15 +1,33 @@
 <div class="">
     <div class="">
-    <div class="well ">
-    <h1>Profil Użytkownika</h1>
-        <hr>
-        <p>
-            <h2>{{user.name}} {{user.surname}}</h2>
-            <strong>Urodzony:</strong> {{user.birthDate}}</br>
-            <strong>Login:</strong> {{user.login}}</br>
-            <strong>Email:</strong> {{user.email}}</br>
-        </p>
-    </div>
+        <div class="well ">
+            <h1>Profil Użytkownika - {{user.name}} {{user.surname}}</h1>
+            <hr>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="s" class="control-label">Urodzony</label>
+                        <input class="form-control" id="s"
+                               ng-model="user.name" readonly="readonly">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="d" class="control-label">Adres email</label>
+                        <input class="form-control" id="d"
+                               ng-model="user.email" readonly="readonly">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="a" class="control-label">Login</label>
+                        <input class="form-control" id="a"
+                               ng-model="user.login" readonly="readonly">
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <div class="row">
     <div class="panel-group col-md-4" id="accordion">

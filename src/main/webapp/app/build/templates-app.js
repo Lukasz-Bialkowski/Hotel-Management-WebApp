@@ -592,16 +592,34 @@ angular.module("profile/profile.tpl.html", []).run(["$templateCache", function($
   $templateCache.put("profile/profile.tpl.html",
     "<div class=\"\">\n" +
     "    <div class=\"\">\n" +
-    "    <div class=\"well \">\n" +
-    "    <h1>Profil Użytkownika</h1>\n" +
-    "        <hr>\n" +
-    "        <p>\n" +
-    "            <h2>{{user.name}} {{user.surname}}</h2>\n" +
-    "            <strong>Urodzony:</strong> {{user.birthDate}}</br>\n" +
-    "            <strong>Login:</strong> {{user.login}}</br>\n" +
-    "            <strong>Email:</strong> {{user.email}}</br>\n" +
-    "        </p>\n" +
-    "    </div>\n" +
+    "        <div class=\"well \">\n" +
+    "            <h1>Profil Użytkownika - {{user.name}} {{user.surname}}</h1>\n" +
+    "            <hr>\n" +
+    "\n" +
+    "            <div class=\"row\">\n" +
+    "                <div class=\"col-md-4\">\n" +
+    "                    <div class=\"form-group\">\n" +
+    "                        <label for=\"s\" class=\"control-label\">Urodzony</label>\n" +
+    "                        <input class=\"form-control\" id=\"s\"\n" +
+    "                               ng-model=\"user.name\" readonly=\"readonly\">\n" +
+    "                    </div>\n" +
+    "                </div>\n" +
+    "                <div class=\"col-md-4\">\n" +
+    "                    <div class=\"form-group\">\n" +
+    "                        <label for=\"d\" class=\"control-label\">Adres email</label>\n" +
+    "                        <input class=\"form-control\" id=\"d\"\n" +
+    "                               ng-model=\"user.email\" readonly=\"readonly\">\n" +
+    "                    </div>\n" +
+    "                </div>\n" +
+    "                <div class=\"col-md-4\">\n" +
+    "                    <div class=\"form-group\">\n" +
+    "                        <label for=\"a\" class=\"control-label\">Login</label>\n" +
+    "                        <input class=\"form-control\" id=\"a\"\n" +
+    "                               ng-model=\"user.login\" readonly=\"readonly\">\n" +
+    "                    </div>\n" +
+    "                </div>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
     "    </div>\n" +
     "    <div class=\"row\">\n" +
     "    <div class=\"panel-group col-md-4\" id=\"accordion\">\n" +
