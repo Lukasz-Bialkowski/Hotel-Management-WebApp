@@ -76,6 +76,7 @@ angular.module('ngBoilerplate.account', ['ui.router', 'ngResource'])
             else {alert("Blad podczas proby logowania");}
         });
     };
+    $scope.saveUser = function(event){ event.preventDefault(); };
     $scope.touchedFormWarn = function(flaga) {
         if(!flaga){
             var confirmation = confirm("Uwaga\nUtracisz wszystkie wprowadzone dotychczas dane");

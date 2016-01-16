@@ -318,7 +318,7 @@ angular.module("account/register.tpl.html", []).run(["$templateCache", function(
     "  </h1>\n" +
     "    <p>Wprowadz dane niezbędne do rejestracji w systemie.</br>\n" +
     "    Na podany poniżej <strong>adres email</strong> zostanie wysłany mail aktywujacy konto.</p>\n" +
-    "    <form name=\"itemForm\" novalidate ng-submit=\"register()\" ng-init=\"current.enabled = false;\">\n" +
+    "    <form name=\"itemForm\" novalidate  ng-init=\"current.enabled = false;\">\n" +
     "        <fieldset>\n" +
     "            <div class=\"row\">\n" +
     "                <div class=\"col-md-4\">\n" +
@@ -419,8 +419,8 @@ angular.module("account/register.tpl.html", []).run(["$templateCache", function(
     "            </div>\n" +
     "        </fieldset>\n" +
     "        <div class=\"\"><br/><br/>\n" +
-    "            <button class=\"col-md-3 col-md-offset-3 btn btn-success\" ng-disabled=\"itemForm.$invalid\" type=\"submit\">Zaloz konto</button>\n" +
-    "            <button class=\"col-md-3 btn btn-danger\" ng-click=\"touchedFormWarn(itemForm.$pristine)\" >Anuluj</button>\n" +
+    "            <button class=\"col-md-3 col-md-offset-3 btn btn-success\" ng-disabled=\"itemForm.$invalid\" ng-click=\"register()\">Zaloz konto</button>\n" +
+    "            <button class=\"col-md-3 btn btn-danger\" ng-click=\"touchedFormWarn(itemForm.$pristine); saveUser($event);\" >Anuluj</button>\n" +
     "        </div>\n" +
     "    </form>\n" +
     "</div>\n" +
@@ -683,15 +683,15 @@ angular.module("profile/reservations.tpl.html", []).run(["$templateCache", funct
     "            <div class=\"panel-group\" >\n" +
     "                <accordion close-others=\"false\">\n" +
     "                    <accordion-group ng-repeat=\"item in reservations\" style=\"cursor:pointer\" heading=\"Numer rezerwacji: {{item.id}}, Poczatek rezerwacji: {{item.startDate}} , Status: {{item.status}}\">\n" +
-    "                                <div class=\"thumbnail work-item\">\n" +
+    "                                <div style=\"padding: 6px; border-radius: 6px;\" ng-class=\"item.status=='ANULOWANA' ? 'bg-danger' : 'bg-success'\">\n" +
     "                                    <fieldset>\n" +
     "                                        <legend>Dane rezerwacji</legend>\n" +
     "                                        <strong>Numer rezerwacji:</strong> #{{item.id}}</br>\n" +
     "                                        <strong>Termin:</strong> {{item.startDate | date:'yyyy-MM-dd'}} - {{item.endDate | date:'yyyy-MM-dd'}}</br>\n" +
     "                                        <strong>Status:</strong> {{item.status}}</br>\n" +
     "                                        <strong>Pokoj:</strong> nr: {{item.room.roomNr}}, standard: {{item.room.standard}}</br>\n" +
-    "                                        <strong>Koszt:</strong> {{item.totalCost}}zl</br><hr>\n" +
-    "                                        <button type=\"button\" ng-if=\"cancelAvailable(item.startDate)\" class=\"btn btn-danger\" ng-click=\"cancelReservation(item.id)\">Anuluj rezerwacje</button>\n" +
+    "                                        <strong>Koszt:</strong> {{item.totalCost}}zl<hr>\n" +
+    "                                        <button type=\"button\" ng-if=\"cancelAvailable(item.startDate, item.status)\" class=\"btn btn-danger\" ng-click=\"cancelReservation(item.id)\">Anuluj rezerwacje</button>\n" +
     "                                    </fieldset>\n" +
     "                                </div>\n" +
     "                    </accordion-group>\n" +

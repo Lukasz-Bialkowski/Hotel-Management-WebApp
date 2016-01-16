@@ -107,7 +107,7 @@ angular.module('ngBoilerplate.profile', ['ui.router', 'ngResource', 'ngBoilerpla
             $scope.reservations = response;
         });
     };
-    $scope.cancelAvailable = function(startDate) {
+    $scope.cancelAvailable = function(startDate,status) {
         var today = new Date();
         var last = today.getTime() - 3*(24*60*60*1000);
         var start = Date.parse(startDate);
@@ -116,14 +116,20 @@ angular.module('ngBoilerplate.profile', ['ui.router', 'ngResource', 'ngBoilerpla
 //        console.log("Poczatek rezerwacji : "+ start);
 //        console.log("Poczatek rezerwacji mniejszy od ostatniej mozliwej daty?: " + (start<last));
 
+        if(start<last && status!='ANULOWANA'){ return true; }
+        else{ return false; }
         return start<last;
     };
     $scope.cancelReservation = function(reservationId){
-        ReservationsService.deleteReservation({id:$scope.user.id, resId:reservationId}, function(response){
-            alert("Na Twoją skrzynkę mailową został wysłany link aktywujacy anulowanie rezerwacji");
-            $scope.getCurrentReservations();
-            $scope.getHistoryReservations();
-        });
+        var r = confirm("Czy napewno chcesz anulowac tę rezerwacje?\nTa operacja jest nieodwracalna!");
+        if (r === true) {
+            ReservationsService.deleteReservation({id:$scope.user.id, resId:reservationId}, function(response){
+                alert("Na Twoją skrzynkę mailową został wysłany link aktywujacy anulowanie rezerwacji");
+                $scope.getCurrentReservations();
+                $scope.getHistoryReservations();
+            });
+        } else {
+        }
     };
 
 })
@@ -132,5 +138,4 @@ angular.module('ngBoilerplate.profile', ['ui.router', 'ngResource', 'ngBoilerpla
         sessionService.logout();
         $state.go("login");
     };
-
 });

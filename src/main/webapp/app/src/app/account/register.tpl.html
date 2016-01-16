@@ -4,7 +4,7 @@
   </h1>
     <p>Wprowadz dane niezbędne do rejestracji w systemie.</br>
     Na podany poniżej <strong>adres email</strong> zostanie wysłany mail aktywujacy konto.</p>
-    <form name="itemForm" novalidate ng-submit="register()" ng-init="current.enabled = false;">
+    <form name="itemForm" novalidate  ng-init="current.enabled = false;">
         <fieldset>
             <div class="row">
                 <div class="col-md-4">
@@ -105,8 +105,8 @@
             </div>
         </fieldset>
         <div class=""><br/><br/>
-            <button class="col-md-3 col-md-offset-3 btn btn-success" ng-disabled="itemForm.$invalid" type="submit">Zaloz konto</button>
-            <button class="col-md-3 btn btn-danger" ng-click="touchedFormWarn(itemForm.$pristine)" >Anuluj</button>
+            <button class="col-md-3 col-md-offset-3 btn btn-success" ng-disabled="itemForm.$invalid" ng-click="register()">Zaloz konto</button>
+            <button class="col-md-3 btn btn-danger" ng-click="touchedFormWarn(itemForm.$pristine); saveUser($event);" >Anuluj</button>
         </div>
     </form>
 </div>

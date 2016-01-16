@@ -92,9 +92,9 @@ angular.module('ngBoilerplate.reservations', ['ui.router', 'ngResource', 'ngBoil
     $scope.availableReservations = [
         {"id":null,"startDate":1352000000000,"endDate":1452293439063,"totalCost":12.99,"room":{"id":null,"roomNr":16,"standard":"WYSOKI"},"status":"AKTYWNA"},
         {"id":null,"startDate":1452293439063,"endDate":1422293439063,"totalCost":122.3,"room":{"id":null,"roomNr":1,"standard":"NORMALNY"},"status":"OCZEKUJACY"},
-        {"id":null,"startDate":1452293439063,"endDate":1252293439063,"totalCost":12.3,"room":{"id":null,"roomNr":45,"standard":"NISKI"},"status":"OCZEKUJACY"},
+        {"id":null,"startDate":1552293439063,"endDate":1252293439063,"totalCost":12.3,"room":{"id":null,"roomNr":45,"standard":"NISKI"},"status":"OCZEKUJACY"},
         {"id":null,"startDate":1352000000000,"endDate":1452293439063,"totalCost":156.99,"room":{"id":null,"roomNr":122,"standard":"NISKI"},"status":"AKTYWNA"},
-        {"id":null,"startDate":1452293439063,"endDate":1452293439063,"totalCost":1555.3,"room":{"id":null,"roomNr":33,"standard":"WYSOKI"},"status":"OCZEKUJACY"},
+        {"id":null,"startDate":1492293439063,"endDate":1452293439063,"totalCost":1555.3,"room":{"id":null,"roomNr":33,"standard":"WYSOKI"},"status":"OCZEKUJACY"},
         {"id":null,"startDate":1252293439063,"endDate":1412293439063,"totalCost":14.3,"room":{"id":null,"roomNr":16,"standard":"WYSOKI"},"status":"AKTYWNA"}
     ];
     $scope.addReservationToUser = function(item, indeks){
