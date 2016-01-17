@@ -17,16 +17,49 @@ import tutorial.rest.mvc.events.OnRegistrationCompleteEvent;
 import java.util.Calendar;
 import java.util.Locale;
 
+/**
+ * Jest glownym kontrolerem obslugujacym rządania zwiazane z kontami uzytkownika.
+ * Nasluchuje na sciezce '/rest/account/'
+ *
+ * @author Lukasz Bialkowski
+ * @version 1.0
+ * @see OnRegistrationCompleteEvent
+ * @see StaticTemplates
+ * @see tutorial.rest.mvc.events.listeners.RegistrationListener
+ */
 @Controller
 @RequestMapping("/rest/account")
 public class AccountDetailsController extends CRUDController<Account> {
 
+    /**
+     * Serwis zarzadzajacy kontami uzytkownika.
+     * Obsluguje operacje CRUD i realizuje logike biznesowa.
+     *
+     * @see AccountsService
+     */
     @Autowired
     private AccountsService accountsService;
 
+    /**
+     * Serwis, ktory odpowiada za proces wysylania maila.
+     *
+     * @see ApplicationEventPublisher
+     * @see OnRegistrationCompleteEvent
+     * @see tutorial.rest.mvc.events.listeners.RegistrationListener
+     */
     @Autowired
     ApplicationEventPublisher eventPublisher;
 
+    /**
+     * Metoda nasluguje na rzadania na sciezce 'rest/account/credentials/'.
+     * Odszukuje z wykorzystaniem serwisu konta uzytkownikow o podanym w parametrze loginie.
+     *
+     * @param  login Ciag znakow oznaczajacy login uzytkownika
+     * @return      Konto uzytkownika o odpowiadającym loginie.
+     * @see        RequestBody
+     * @see        RequestParam
+     * @see        RequestMapping
+     */
     @RequestMapping(method = {RequestMethod.GET}, value = "/credentials")
     @ResponseBody
     public Account getAccountByLogin(@RequestParam("login") String login) {
@@ -38,6 +71,18 @@ public class AccountDetailsController extends CRUDController<Account> {
         return accountsService;
     }
 
+    /**
+     * Metoda nasluguje na rzadania na sciezce 'rest/account/registration/'.
+     * Rejestruje w konto uzytkownika w bazie danych.
+     *
+     * @param  accountDto Obiekt konta uzytkownika, ktory ma byc zapisany w bazie.
+     * @param request Obiekt bedacy reprezentacja zadania HTTP.
+     * @return      Konto uzytkownika z nadanym identyfikatorem.
+     * @see        RequestBody
+     * @see        RequestParam
+     * @see        RequestMethod
+     * @see        RequestMapping
+     */
     @RequestMapping(value = "registration", method = RequestMethod.POST)
     public @ResponseBody Account registerUserAccount(@RequestBody Account accountDto, WebRequest request) {
 
@@ -54,6 +99,18 @@ public class AccountDetailsController extends CRUDController<Account> {
         return registered;
     }
 
+    /**
+     * Metoda nasluguje na rzadania na sciezce '/regitrationConfirm/'.
+     * Aktywuje status konta uzytkownika o tokenie walidacyjnym odpowiadajacym
+     * przesłanemu parametrowi.
+     *
+     * @param token Ciag znakow bedacym tokenem walidacyjnym potrzebnym do aktywacji konta.
+     * @param request Obiekt bedacy reprezentacja zadania HTTP.
+     * @return     Przekierowanie na potwierdzenie aktywacji.
+     * @see        WebRequest
+     * @see        RequestMethod
+     * @see        PathVariable
+     */
     @RequestMapping(value = "/regitrationConfirm/{token}", method = RequestMethod.GET)
     public String confirmRegistration(WebRequest request, @PathVariable("token") String token) {
 
