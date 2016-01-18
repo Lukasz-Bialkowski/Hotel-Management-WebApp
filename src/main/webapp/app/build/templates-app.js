@@ -301,7 +301,7 @@ angular.module("account/login.tpl.html", []).run(["$templateCache", function($te
     "        <div class=\"\"><br/><br/>\n" +
     "\n" +
     "                <button class=\"col-md-3 col-md-offset-3 btn btn-success \" type=\"submit\">Zaloguj</button>&nbsp;\n" +
-    "                <button class=\"col-md-3 btn btn-danger\" ng-click=\"touchedFormWarn(itemForm.$pristine)\">Anuluj</button>\n" +
+    "                <button class=\"col-md-3 btn btn-danger\" ng-click=\"touchedFormWarn(itemForm.$pristine);saveUser($event);\">Anuluj</button>\n" +
     "\n" +
     "        </div>\n" +
     "    </form>\n" +
@@ -361,7 +361,7 @@ angular.module("account/register.tpl.html", []).run(["$templateCache", function(
     "                </div>\n" +
     "                <div class=\"col-md-4\">\n" +
     "                    <div class=\"form-group\">\n" +
-    "                        <label for=\"birthDate\" class=\"control-label\">Data urodzenia (wymagane)</label>\n" +
+    "                        <label for=\"birthDate\" class=\"control-label\">Data urodzenia </label>\n" +
     "                        <input type=\"date\" class=\"form-control\" id=\"birthDate\" ng-model=\"current.birthDate\">\n" +
     "                    </div>\n" +
     "                </div>\n" +
@@ -599,7 +599,7 @@ angular.module("profile/profile.tpl.html", []).run(["$templateCache", function($
     "            <div class=\"row\">\n" +
     "                <div class=\"col-md-4\">\n" +
     "                    <div class=\"form-group\">\n" +
-    "                        <label for=\"s\" class=\"control-label\">Urodzony</label>\n" +
+    "                        <label for=\"s\" class=\"control-label\">Imię</label>\n" +
     "                        <input class=\"form-control\" id=\"s\"\n" +
     "                               ng-model=\"user.name\" readonly=\"readonly\">\n" +
     "                    </div>\n" +

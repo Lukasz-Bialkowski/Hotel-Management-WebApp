@@ -102,10 +102,11 @@ angular.module('ngBoilerplate.account', ['ui.router', 'ngResource'])
     };
     $scope.touchedFormWarn = function(flaga) {
         if(!flaga){
-            var confirmation = confirm("Uwaga\n Utracisz wszystkie wprowadzone dotychczas dane");
+            var confirmation = confirm("Uwaga\nUtracisz wszystkie wprowadzone dotychczas dane");
             if(confirmation){
                 $state.go("home");
             }
         }
     };
+    $scope.saveUser = function(event){ event.preventDefault(); };
 });
