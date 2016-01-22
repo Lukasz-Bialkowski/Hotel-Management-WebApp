@@ -1,4 +1,4 @@
-angular.module('templates-app', ['about/about.tpl.html', 'account/login.tpl.html', 'account/register.tpl.html', 'home/home.tpl.html', 'profile/cancelconfirm.tpl.html', 'profile/profile.tpl.html', 'profile/reservations.tpl.html', 'reservations/avreservations.tpl.html']);
+angular.module('templates-app', ['about/about.tpl.html', 'account/login.tpl.html', 'account/register.tpl.html', 'home/home.tpl.html', 'profile/cancelconfirm.tpl.html', 'profile/profile.tpl.html', 'profile/reservations.tpl.html', 'reservations/avreservations.tpl.html', 'reservations/filters.tpl.html']);
 
 angular.module("about/about.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("about/about.tpl.html",
@@ -348,14 +348,14 @@ angular.module("account/register.tpl.html", []).run(["$templateCache", function(
     "                <div class=\"col-md-4\">\n" +
     "                    <div class=\"form-group\">\n" +
     "                        <label for=\"nameId\" class=\"control-label\">Imie (wymagane)</label>\n" +
-    "                        <input type=\"text\" class=\"form-control\" placeholder=\"np. Polska\" id=\"nameId\"\n" +
+    "                        <input type=\"text\" class=\"form-control\" placeholder=\"np. Dariusz\" id=\"nameId\"\n" +
     "                               ng-model=\"current.name\" required hrt-btr-validation>\n" +
     "                    </div>\n" +
     "                </div>\n" +
     "                <div class=\"col-md-4\">\n" +
     "                    <div class=\"form-group\">\n" +
     "                        <label for=\"surnameId\" class=\"control-label\">Nazwisko (wymagane)</label>\n" +
-    "                        <input class=\"form-control\" id=\"surnameId\" placeholder=\"Radom\" ng-model=\"current.surname\"\n" +
+    "                        <input class=\"form-control\" id=\"surnameId\" placeholder=\"Kowalski\" ng-model=\"current.surname\"\n" +
     "                               required hrt-btr-validation>\n" +
     "                    </div>\n" +
     "                </div>\n" +
@@ -473,18 +473,18 @@ angular.module("home/home.tpl.html", []).run(["$templateCache", function($templa
     "  <div class=\"btn-group\" ng-hide=\"isLoggedIn()\">\n" +
     "    <a ui-sref=\"login\" class=\"btn btn-large btn-default\">\n" +
     "      <i class=\"fa fa-book\"></i>\n" +
-    "      Login\n" +
+    "      Zaloguj\n" +
     "    </a>\n" +
     "    <a ui-sref=\"register\" class=\"btn btn-large btn-success\">\n" +
     "      <i class=\"fa fa-download\"></i>\n" +
-    "      Register\n" +
+    "      Rejestracja\n" +
     "    </a>\n" +
     "  </div>\n" +
     "\n" +
     "  <div class=\"btn-group\" ng-show=\"isLoggedIn()\">\n" +
     "      <a ng-click=\"logout()\" class=\"btn btn-large btn-default\">\n" +
     "          <i class=\"fa fa-book\"></i>\n" +
-    "          Logout\n" +
+    "          Wyloguj\n" +
     "      </a>\n" +
     "  </div>\n" +
     "\n" +
@@ -619,6 +619,29 @@ angular.module("profile/profile.tpl.html", []).run(["$templateCache", function($
     "                    </div>\n" +
     "                </div>\n" +
     "            </div>\n" +
+    "            <div class=\"row\">\n" +
+    "                <div class=\"col-md-4\">\n" +
+    "                    <div class=\"form-group\">\n" +
+    "                        <label for=\"miastoId\" class=\"control-label\">Miasto</label>\n" +
+    "                        <input class=\"form-control\" id=\"miastoId\"\n" +
+    "                               ng-model=\"user.address.city\" readonly=\"readonly\">\n" +
+    "                    </div>\n" +
+    "                </div>\n" +
+    "                <div class=\"col-md-4\">\n" +
+    "                    <div class=\"form-group\">\n" +
+    "                        <label for=\"ulicaId\" class=\"control-label\">Ulica</label>\n" +
+    "                        <input class=\"form-control\" id=\"ulicaId\"\n" +
+    "                               ng-model=\"user.address.street\" readonly=\"readonly\">\n" +
+    "                    </div>\n" +
+    "                </div>\n" +
+    "                <div class=\"col-md-4\">\n" +
+    "                    <div class=\"form-group\">\n" +
+    "                        <label for=\"krajId\" class=\"control-label\">Kraj</label>\n" +
+    "                        <input class=\"form-control\" id=\"krajId\"\n" +
+    "                               ng-model=\"user.address.country\" readonly=\"readonly\">\n" +
+    "                    </div>\n" +
+    "                </div>\n" +
+    "            </div>\n" +
     "        </div>\n" +
     "    </div>\n" +
     "    <div class=\"row\">\n" +
@@ -712,15 +735,54 @@ angular.module("reservations/avreservations.tpl.html", []).run(["$templateCache"
     "            Gorące okazje!\n" +
     "        </h1>\n" +
     "        <p><strong>Uwaga:</strong> <strong>Kliknij na interesującą Cie pozycje aby dokonać rezerwacji.</strong></p>\n" +
-    "        <div class=\"panel-group\" id=\"accordion\">\n" +
-    "            <div class=\"panel panel-default\" style=\"cursor:pointer\" ng-repeat=\"item in availableReservations  | orderBy:'startDate'\">\n" +
-    "                <div class=\"panel-heading\" ng-click=\"addReservationToUser(item, $index)\">\n" +
+    "        <div class=\"panel-group\" id=\"accordioni\">\n" +
+    "            <div class=\"panel panel-default\" style=\"cursor:pointer\" ng-repeat=\"itemm in availableReservations  | filter:item\">\n" +
+    "                <div class=\"panel-heading\" ng-click=\"addReservationToUser(itemm, $index)\">\n" +
     "                    <h4 class=\"panel-title\">\n" +
-    "                        Pokoj: nr {{item.room.roomNr}} , standard: {{item.room.standard}} | Data: {{item.startDate | date:'yyyy-MM-dd'}} - {{item.endDate | date:'yyyy-MM-dd'}} | Koszt: {{item.totalCost}}zl\n" +
+    "                        Pokoj: nr {{itemm.room.roomNr}} , standard: {{itemm.room.standard}} | Data: {{itemm.startDate | date:'yyyy-MM-dd'}} - {{itemm.endDate | date:'yyyy-MM-dd'}} | Koszt: {{itemm.totalCost}} zl\n" +
     "                    </h4>\n" +
     "                </div>\n" +
     "            </div>\n" +
     "        </div>\n" +
     "    </div>\n" +
     "</div>");
+}]);
+
+angular.module("reservations/filters.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("reservations/filters.tpl.html",
+    "<div class=\"\">\n" +
+    "    <div class=\"well \" ng-init=\"ite;item.startDate;item.room.standard;\">\n" +
+    "        <h1>Filtruj rezerwacje</h1>\n" +
+    "        <hr>\n" +
+    "\n" +
+    "        <div class=\"row\">\n" +
+    "            <div class=\"col-md-3\">\n" +
+    "                <div class=\"form-group\">\n" +
+    "                    <label for=\"s\" class=\"control-label\">Ile noclegów</label>\n" +
+    "                    <input class=\"form-control\" id=\"s\"\n" +
+    "                           ng-model=\"ite\" >\n" +
+    "                </div>\n" +
+    "            </div>\n" +
+    "            <div class=\"col-md-4\">\n" +
+    "                <div class=\"form-group\">\n" +
+    "                    <label for=\"d\" class=\"control-label\">Standard pokoju</label>\n" +
+    "                    <select id=\"d\" class=\"form-control\" ng-model=\"item.room.standard\">\n" +
+    "                        <option value=\"WYSOKI\">WYSOKI</option>\n" +
+    "                        <option value=\"NORMALNY\">NORMALNY</option>\n" +
+    "                        <option value=\"NISKI\">NISKI</option>\n" +
+    "                    </select><br>\n" +
+    "                </div>\n" +
+    "            </div>\n" +
+    "\n" +
+    "            <div class=\"col-md-2\">\n" +
+    "                <div class=\"form-group\">\n" +
+    "                    <label>&nbsp;</label>\n" +
+    "                    <button class=\"btn btn-success col-md-12\" ui-sref=\"filters.reservations\">Filtruj</button>\n" +
+    "                </div>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "\n" +
+    "    </div>\n" +
+    "</div>\n" +
+    "<div ui-view=\"right\"></div>");
 }]);

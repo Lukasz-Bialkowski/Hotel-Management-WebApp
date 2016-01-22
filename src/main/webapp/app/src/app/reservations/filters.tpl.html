@@ -1,0 +1,35 @@
+<div class="">
+    <div class="well " ng-init="ite;item.startDate;item.room.standard;">
+        <h1>Filtruj rezerwacje</h1>
+        <hr>
+
+        <div class="row">
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label for="s" class="control-label">Ile noclegów</label>
+                    <input class="form-control" id="s"
+                           ng-model="ite" >
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="d" class="control-label">Standard pokoju</label>
+                    <select id="d" class="form-control" ng-model="item.room.standard">
+                        <option value="WYSOKI">WYSOKI</option>
+                        <option value="NORMALNY">NORMALNY</option>
+                        <option value="NISKI">NISKI</option>
+                    </select><br>
+                </div>
+            </div>
+
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label>&nbsp;</label>
+                    <button class="btn btn-success col-md-12" ui-sref="filters.reservations">Filtruj</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<div ui-view="right"></div>

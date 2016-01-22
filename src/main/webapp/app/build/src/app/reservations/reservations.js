@@ -1,15 +1,25 @@
 angular.module('ngBoilerplate.reservations', ['ui.router', 'ngResource', 'ngBoilerplate.account'])
 .config(function($stateProvider){
-    $stateProvider.state('reservations', {
-        url:'/reservations',
+    $stateProvider.state('filters', {
+        url:'/filters',
         views: {
             'main' : {
-                templateUrl : 'reservations/avreservations.tpl.html',
+                templateUrl : 'reservations/filters.tpl.html',
                 controller : 'ReservationCtrl'
             }
         },
         data : { pageTitle : "Rezerwacja" }
-    });
+    })
+    .state('filters.reservations', {
+            url:'/reservations',
+            views: {
+                'right' : {
+                    templateUrl : 'reservations/avreservations.tpl.html',
+                    controller : 'ReservationCtrl'
+                }
+            },
+            data : { pageTitle : "Rezerwacja" }
+        });
 
 })
 .factory('AvailableReservationsService', function($resource) {
@@ -101,6 +111,6 @@ angular.module('ngBoilerplate.reservations', ['ui.router', 'ngResource', 'ngBoil
         AvailableReservationsService.addReservationToUser({id:$scope.user.id}, item,function(response){
            alert("Dodano rezerwacje dla uzytkownika "+ $scope.user.login);
         });
-        $scope.availableReservations.splice(indeks, 1);
+        //$scope.availableReservations.splice(indeks, 1);
     };
 });

@@ -63,7 +63,7 @@
             </li>
 
             <li ui-sref-active="active" ng-show="isLoggedIn()">
-              <a href ui-sref="reservations">
+              <a href ui-sref="filters">
                 <i class="fa fa-github-alt"></i>
                 Rezerwacja
               </a>
@@ -95,9 +95,9 @@
             <!--</span>-->
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li ng-hide="isLoggedIn()"><a ui-sref="register"><span class="fa fa-book"></span> Sign Up</a></li>
-            <li ng-hide="isLoggedIn()"><a ui-sref="login"><span class="fa fa-download"></span> Login</a></li>
-            <li ng-show="isLoggedIn()"><a ng-click="logout()"><span class="fa fa-book"></span> Logout</a></li>
+            <li ng-hide="isLoggedIn()"><a ui-sref="register"><span class="fa fa-book"></span> Rejestracja</a></li>
+            <li ng-hide="isLoggedIn()"><a ui-sref="login"><span class="fa fa-download"></span> Zaloguj</a></li>
+            <li ng-show="isLoggedIn()"><a ng-click="logout()"><span class="fa fa-book"></span> Wyloguj</a></li>
           </ul>
 
       </div>

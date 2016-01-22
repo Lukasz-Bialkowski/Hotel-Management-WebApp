@@ -4,11 +4,11 @@
             Gorące okazje!
         </h1>
         <p><strong>Uwaga:</strong> <strong>Kliknij na interesującą Cie pozycje aby dokonać rezerwacji.</strong></p>
-        <div class="panel-group" id="accordion">
-            <div class="panel panel-default" style="cursor:pointer" ng-repeat="item in availableReservations  | orderBy:'startDate'">
-                <div class="panel-heading" ng-click="addReservationToUser(item, $index)">
+        <div class="panel-group" id="accordioni">
+            <div class="panel panel-default" style="cursor:pointer" ng-repeat="itemm in availableReservations  | filter:item">
+                <div class="panel-heading" ng-click="addReservationToUser(itemm, $index)">
                     <h4 class="panel-title">
-                        Pokoj: nr {{item.room.roomNr}} , standard: {{item.room.standard}} | Data: {{item.startDate | date:'yyyy-MM-dd'}} - {{item.endDate | date:'yyyy-MM-dd'}} | Koszt: {{item.totalCost}}zl
+                        Pokoj: nr {{itemm.room.roomNr}} , standard: {{itemm.room.standard}} | Data: {{itemm.startDate | date:'yyyy-MM-dd'}} - {{itemm.endDate | date:'yyyy-MM-dd'}} | Koszt: {{itemm.totalCost}} zl
                     </h4>
                 </div>
             </div>

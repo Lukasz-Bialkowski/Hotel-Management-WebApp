@@ -38,7 +38,7 @@ public class ReservationListener implements ApplicationListener<OnReservationEve
         String confirmationUrl = event.getAppUrl() + "/rest/profile/reservations/" + event.getUserId().toString() + "/cancel/" + token;
         String link = "http://localhost:8080" + confirmationUrl;
 
-        System.out.println("Link aktywacyjny" + link);
+        System.out.println("Link aktywacyjny: " + link);
         System.out.println("Przed aktywacja konta: "+ reservation);
         emailSender.sendActivationEmail(recipientAddress, subject, StaticTemplates.generateReservationActivationEmailContent(link));
     }
