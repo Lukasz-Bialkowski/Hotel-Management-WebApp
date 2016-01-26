@@ -431,6 +431,7 @@ angular.module("account/register.tpl.html", []).run(["$templateCache", function(
 angular.module("home/home.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("home/home.tpl.html",
     "<div class=\"jumbotron\">\n" +
+    "  <img src=\"assets/rose1.jpg\" class=\"img-circle\" alt=\"Cinque Terre\" width=\"100px\" height=\"100px\" >\n" +
     "  <h1>Hotel pod Roza</h1>\n" +
     "\n" +
     "  <p class=\"lead\">\n" +
@@ -678,7 +679,7 @@ angular.module("profile/reservations.tpl.html", []).run(["$templateCache", funct
   $templateCache.put("profile/reservations.tpl.html",
     "<div >\n" +
     "    <div>\n" +
-    "        <h2>Wybierz rezerwacje</h2>\n" +
+    "        <h1>Wybierz rezerwacje</h1>\n" +
     "        <p><strong>Uwaga:</strong> <strong>Wybierz czy chcesz przeglądać obecne rezerwacje czy zakończone już rezerwacje.</strong> </p>\n" +
     "        <div class=\"panel-group\" id=\"accordion\">\n" +
     "            <div class=\"panel panel-default\" style=\"cursor:pointer\">\n" +
