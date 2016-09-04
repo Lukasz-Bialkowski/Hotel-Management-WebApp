@@ -1,17 +1,19 @@
 <div class="">
-    <div class="well " ng-init="ite;item.startDate;item.room.standard;">
+    <div class="well " ng-init="ite;item.startDate;item.room.standard;ads;ads2">
         <h1>Filtruj rezerwacje</h1>
+        Wprowadz dane rezerwacji
         <hr>
 
+
         <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-2">
                 <div class="form-group">
-                    <label for="s" class="control-label">Ile noclegów</label>
+                    <label for="s" class="control-label">Ilosc lozek</label>
                     <input class="form-control" id="s"
                            ng-model="ite" >
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <div class="form-group">
                     <label for="d" class="control-label">Standard pokoju</label>
                     <select id="d" class="form-control" ng-model="item.room.standard">
@@ -21,8 +23,20 @@
                     </select><br>
                 </div>
             </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label for="t" class="control-label">Data rozpoczecia</label>
+                    <input type="date" id="t" class="form-control" ng-model="ads">
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label for="r" class="control-label">Data zakonczenia</label>
+                    <input type="date" id="r" class="form-control" ng-model="ads2">
+                </div>
+            </div>
 
-            <div class="col-md-2">
+            <div class="col-md-1">
                 <div class="form-group">
                     <label>&nbsp;</label>
                     <button class="btn btn-success col-md-12" ui-sref="filters.reservations">Filtruj</button>

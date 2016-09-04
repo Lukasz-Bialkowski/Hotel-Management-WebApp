@@ -1,6 +1,7 @@
 package tutorial.core.models.entities;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 /**
@@ -13,8 +14,10 @@ public class Room implements Serializable {
     @GeneratedValue
     Long id;
 
+    @NotNull
     Integer roomNr;
 
+    @NotNull
     @Enumerated(EnumType.STRING)
     RoomStandard standard;
 

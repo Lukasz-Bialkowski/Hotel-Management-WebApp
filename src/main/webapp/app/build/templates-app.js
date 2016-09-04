@@ -602,21 +602,21 @@ angular.module("profile/profile.tpl.html", []).run(["$templateCache", function($
     "                    <div class=\"form-group\">\n" +
     "                        <label for=\"s\" class=\"control-label\">Imię</label>\n" +
     "                        <input class=\"form-control\" id=\"s\"\n" +
-    "                               ng-model=\"user.name\" readonly=\"readonly\">\n" +
+    "                               ng-model=\"user.name\" >\n" +
     "                    </div>\n" +
     "                </div>\n" +
     "                <div class=\"col-md-4\">\n" +
     "                    <div class=\"form-group\">\n" +
     "                        <label for=\"d\" class=\"control-label\">Adres email</label>\n" +
     "                        <input class=\"form-control\" id=\"d\"\n" +
-    "                               ng-model=\"user.email\" readonly=\"readonly\">\n" +
+    "                               ng-model=\"user.email\" >\n" +
     "                    </div>\n" +
     "                </div>\n" +
     "                <div class=\"col-md-4\">\n" +
     "                    <div class=\"form-group\">\n" +
     "                        <label for=\"a\" class=\"control-label\">Login</label>\n" +
     "                        <input class=\"form-control\" id=\"a\"\n" +
-    "                               ng-model=\"user.login\" readonly=\"readonly\">\n" +
+    "                               ng-model=\"user.login\" >\n" +
     "                    </div>\n" +
     "                </div>\n" +
     "            </div>\n" +
@@ -625,21 +625,21 @@ angular.module("profile/profile.tpl.html", []).run(["$templateCache", function($
     "                    <div class=\"form-group\">\n" +
     "                        <label for=\"miastoId\" class=\"control-label\">Miasto</label>\n" +
     "                        <input class=\"form-control\" id=\"miastoId\"\n" +
-    "                               ng-model=\"user.address.city\" readonly=\"readonly\">\n" +
+    "                               ng-model=\"user.address.city\" >\n" +
     "                    </div>\n" +
     "                </div>\n" +
     "                <div class=\"col-md-4\">\n" +
     "                    <div class=\"form-group\">\n" +
     "                        <label for=\"ulicaId\" class=\"control-label\">Ulica</label>\n" +
     "                        <input class=\"form-control\" id=\"ulicaId\"\n" +
-    "                               ng-model=\"user.address.street\" readonly=\"readonly\">\n" +
+    "                               ng-model=\"user.address.street\" >\n" +
     "                    </div>\n" +
     "                </div>\n" +
     "                <div class=\"col-md-4\">\n" +
     "                    <div class=\"form-group\">\n" +
     "                        <label for=\"krajId\" class=\"control-label\">Kraj</label>\n" +
     "                        <input class=\"form-control\" id=\"krajId\"\n" +
-    "                               ng-model=\"user.address.country\" readonly=\"readonly\">\n" +
+    "                               ng-model=\"user.address.country\" >\n" +
     "                    </div>\n" +
     "                </div>\n" +
     "            </div>\n" +
@@ -740,7 +740,7 @@ angular.module("reservations/avreservations.tpl.html", []).run(["$templateCache"
     "            <div class=\"panel panel-default\" style=\"cursor:pointer\" ng-repeat=\"itemm in availableReservations  | filter:item\">\n" +
     "                <div class=\"panel-heading\" ng-click=\"addReservationToUser(itemm, $index)\">\n" +
     "                    <h4 class=\"panel-title\">\n" +
-    "                        Pokoj: nr {{itemm.room.roomNr}} , standard: {{itemm.room.standard}} | Data: {{itemm.startDate | date:'yyyy-MM-dd'}} - {{itemm.endDate | date:'yyyy-MM-dd'}} | Koszt: {{itemm.totalCost}} zl\n" +
+    "                        Pokoj: nr {{itemm.room.roomNr}} , standard: {{itemm.room.standard}} | Koszt: {{itemm.totalCost}} zl\n" +
     "                    </h4>\n" +
     "                </div>\n" +
     "            </div>\n" +
@@ -752,19 +752,21 @@ angular.module("reservations/avreservations.tpl.html", []).run(["$templateCache"
 angular.module("reservations/filters.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("reservations/filters.tpl.html",
     "<div class=\"\">\n" +
-    "    <div class=\"well \" ng-init=\"ite;item.startDate;item.room.standard;\">\n" +
+    "    <div class=\"well \" ng-init=\"ite;item.startDate;item.room.standard;ads;ads2\">\n" +
     "        <h1>Filtruj rezerwacje</h1>\n" +
+    "        Wprowadz dane rezerwacji\n" +
     "        <hr>\n" +
     "\n" +
+    "\n" +
     "        <div class=\"row\">\n" +
-    "            <div class=\"col-md-3\">\n" +
+    "            <div class=\"col-md-2\">\n" +
     "                <div class=\"form-group\">\n" +
-    "                    <label for=\"s\" class=\"control-label\">Ile noclegów</label>\n" +
+    "                    <label for=\"s\" class=\"control-label\">Ilosc lozek</label>\n" +
     "                    <input class=\"form-control\" id=\"s\"\n" +
     "                           ng-model=\"ite\" >\n" +
     "                </div>\n" +
     "            </div>\n" +
-    "            <div class=\"col-md-4\">\n" +
+    "            <div class=\"col-md-3\">\n" +
     "                <div class=\"form-group\">\n" +
     "                    <label for=\"d\" class=\"control-label\">Standard pokoju</label>\n" +
     "                    <select id=\"d\" class=\"form-control\" ng-model=\"item.room.standard\">\n" +
@@ -774,8 +776,20 @@ angular.module("reservations/filters.tpl.html", []).run(["$templateCache", funct
     "                    </select><br>\n" +
     "                </div>\n" +
     "            </div>\n" +
+    "            <div class=\"col-md-3\">\n" +
+    "                <div class=\"form-group\">\n" +
+    "                    <label for=\"t\" class=\"control-label\">Data rozpoczecia</label>\n" +
+    "                    <input type=\"date\" id=\"t\" class=\"form-control\" ng-model=\"ads\">\n" +
+    "                </div>\n" +
+    "            </div>\n" +
+    "            <div class=\"col-md-3\">\n" +
+    "                <div class=\"form-group\">\n" +
+    "                    <label for=\"r\" class=\"control-label\">Data zakonczenia</label>\n" +
+    "                    <input type=\"date\" id=\"r\" class=\"form-control\" ng-model=\"ads2\">\n" +
+    "                </div>\n" +
+    "            </div>\n" +
     "\n" +
-    "            <div class=\"col-md-2\">\n" +
+    "            <div class=\"col-md-1\">\n" +
     "                <div class=\"form-group\">\n" +
     "                    <label>&nbsp;</label>\n" +
     "                    <button class=\"btn btn-success col-md-12\" ui-sref=\"filters.reservations\">Filtruj</button>\n" +

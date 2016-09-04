@@ -109,16 +109,16 @@ angular.module('ngBoilerplate.profile', ['ui.router', 'ngResource', 'ngBoilerpla
     };
     $scope.cancelAvailable = function(startDate,status) {
         var today = new Date();
-        var last = today.getTime() - 3*(24*60*60*1000);
+        var last = today.getTime() + 3*(24*60*60*1000);
         var start = Date.parse(startDate);
 
-//        console.log("Ostatnia mozliwa data: " + last);
-//        console.log("Poczatek rezerwacji : "+ start);
-//        console.log("Poczatek rezerwacji mniejszy od ostatniej mozliwej daty?: " + (start<last));
+        console.log("Ostatnia mozliwa data: " + last);
+        console.log("Poczatek rezerwacji : "+ start);
+        console.log("Poczatek rezerwacji mniejszy od ostatniej mozliwej daty?: " + (start<last));
 
-        if(start<last && status!='ANULOWANA'){ return true; }
+        if(last<start && status!='ANULOWANA'){ return true; }
         else{ return false; }
-        return start<last;
+        return last<start;
     };
     $scope.cancelReservation = function(reservationId){
         var r = confirm("Czy napewno chcesz anulowac tę rezerwacje?\nTa operacja jest nieodwracalna!");

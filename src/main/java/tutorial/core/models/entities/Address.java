@@ -3,6 +3,7 @@ package tutorial.core.models.entities;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 /**
@@ -15,14 +16,19 @@ public class Address implements Serializable{
     @GeneratedValue
     Long id;
 
+    @NotNull
     String country;
 
+    @NotNull
     String city;
 
+    @NotNull
     String street;
 
+    @NotNull
     String postcode;
 
+    @NotNull
     String buildingNumber;
 
     String apartmentNumber;

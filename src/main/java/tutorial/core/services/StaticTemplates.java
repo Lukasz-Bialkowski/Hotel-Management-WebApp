@@ -37,12 +37,12 @@ public class StaticTemplates {
     public static String generateRegistrationActivationEmailContent(String login, String link){
         String content =
                 "Drogi " + "Dariuszu" + ",\n\n"
-                + "Dziękujemy za rejestracje w systemie.\n"
-                + "Aby aktywować konto kliknij link poniżej. \n"
+                + "Dziekujemy za rejestracje w systemie.\n"
+                + "Aby aktywowac konto kliknij link ponizej. \n"
                 + link + "\n"
-                + "Życzymy udanego pobytu w hotelu.\n\n"
+                + "Zyczymy udanego pobytu w hotelu.\n\n"
                 + "---------------\n\n"
-                + "Obsługa hotelu";
+                + "Obsluga hotelu";
         return content;
     };
 
@@ -57,11 +57,11 @@ public class StaticTemplates {
     public static String generateReservationActivationEmailContent(String link){
         String content =
                 "Drogi Dariuszu,\n\n"
-                        + "Aby aktywować anulowanie rezerwacji kliknij link poniżej. \n"
+                        + "Aby aktywowac anulowanie rezerwacji kliknij link ponizej. \n"
                         + link + "\n"
                         + "Pozdrawiamy.\n\n"
                         + "---------------\n\n"
-                        + "Obsługa hotelu";
+                        + "Obsluga hotelu";
         return content;
     };
 }

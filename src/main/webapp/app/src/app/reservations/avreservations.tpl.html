@@ -8,7 +8,7 @@
             <div class="panel panel-default" style="cursor:pointer" ng-repeat="itemm in availableReservations  | filter:item">
                 <div class="panel-heading" ng-click="addReservationToUser(itemm, $index)">
                     <h4 class="panel-title">
-                        Pokoj: nr {{itemm.room.roomNr}} , standard: {{itemm.room.standard}} | Data: {{itemm.startDate | date:'yyyy-MM-dd'}} - {{itemm.endDate | date:'yyyy-MM-dd'}} | Koszt: {{itemm.totalCost}} zl
+                        Pokoj: nr {{itemm.room.roomNr}} , standard: {{itemm.room.standard}} | Koszt: {{itemm.totalCost}} zl
                     </h4>
                 </div>
             </div>

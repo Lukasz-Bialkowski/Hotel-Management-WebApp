@@ -3,6 +3,7 @@ package tutorial.core.models.entities;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
@@ -18,17 +19,25 @@ public class Account implements Serializable{
     @GeneratedValue
     private Long id;
 
+    @NotNull
     private String surname;
 
+    @NotNull
     private String name;
 
+    @NotNull
+    @Column(unique = true)
     private String login;
 
+    @Column(unique = true)
+    @NotNull
     private String email;
 
+    @NotNull
     private String password;
 
     private boolean enabled;
+
 
     @Temporal( TemporalType.DATE )
     private Date birthDate;

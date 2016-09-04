@@ -1,6 +1,7 @@
 package tutorial.core.models.entities;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -15,12 +16,15 @@ public class Reservation implements Serializable{
     @GeneratedValue
     Long id;
 
+    @NotNull
     @Temporal( TemporalType.DATE )
     Date startDate;
 
+    @NotNull
     @Temporal( TemporalType.DATE )
     Date endDate;
 
+    @NotNull
     Double totalCost;
 
     private boolean enabled;
@@ -28,6 +32,7 @@ public class Reservation implements Serializable{
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     Room room;
 
+    @NotNull
     @Enumerated(EnumType.STRING)
     ReservationStatus status;
 
